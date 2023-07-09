@@ -1,0 +1,167 @@
+#!/bin/bash
+echo "## To use this in cli use"
+echo "sudo nano /bin/usr/update
+# copy the next 3 lines into it with, and chmod it to 755  
+#!/bin/bash
+bash <(curl -s https://raw.githubusercontent.com/tek-aevl/umupdate/main/rpi-update)
+echo 'bye';";
+echo "#To use run"
+echo "bash update"
+sleep 4
+# Set the colors
+RED='\033[0;31m'       # Red color
+YELLOW='\033[0;33m'    # Yellow color
+GREEN='\033[0;32m'     # Green color
+NC='\033[0m'           # No color
+echo -e "This ${RED}text${NC} is ${RED}red.${NC}"
+echo -e "This ${YELLOW}text${NC} is ${YELLOW}yellow.${NC}"
+echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
+sleep 4
+
+echo -e "Welcome " $USER "@" $HOSTNAME "${GREEN}"
+sudo apt install inxi speedtest-cli neofetch curl
+sudo apt update 
+sudo apt upgrade -y 
+sudo apt autoremove
+echo -e "${NC}"
+# Get the uptime of the system
+uptime=$(uptime -s)
+
+# Get the current timestamp
+current_timestamp=$(date +%s)
+
+# Convert uptime to timestamp
+uptime_timestamp=$(date -d "$uptime" +%s)
+
+# Calculate the time difference in seconds
+time_difference=$((current_timestamp - uptime_timestamp))
+
+# Convert time difference to days, hours, and minutes
+days=$((time_difference / 86400))
+hours=$(( (time_difference % 86400) / 3600 ))
+minutes=$(( (time_difference % 3600) / 60 ))
+
+echo -e "${RED}Reset logs anyway?${NC}"
+# Check if the system has been running for longer than three days
+read -e -i "no" -p "Force log reset? (yes/no): " force_log_reset
+
+if [[ $time_difference -ge $((3 * 24 * 3600)) || $force_log_reset == "yes" ]]; then
+ echo -e "${RED}The system has been running for longer than three days.${NC}"
+ echo -e "${YELLOW}Flushing Logs${NC}"
+ echo "# output current pihole db size"
+ sudo du -h /etc/pihole/pihole-FTL.db -h
+ echo "# flush pihole logs"
+ pihole flush
+ echo "# Output pihole db size"
+ sudo du -h /etc/pihole/pihole-FTL.db -h
+ sudo rm /etc/pihole/pihole-FTL.db-old.db 
+sleep 3
+ echo "# Stop pihole FTL service"
+ sudo systemctl stop pihole-FTL
+ echo "# Delete the FTL database file"
+ sudo service pihole-FTL stop
+ sudo mv /etc/pihole/pihole-FTL.db /etc/pihole/pihole-FTL-old.db
+ sudo service pihole-FTL start
+ echo "# Start pihole FTL service"
+ sudo systemctl start pihole-FTL
+ echo "# Output reduced pihole db size"
+ sudo du -h /etc/pihole/pihole-FTL.db -h
+ sudo du -h /etc/pihole/pihole-FTL-old.db
+sleep 8
+else
+  echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No pihole log operations required.${NC}"
+  echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+fi
+
+echo -e "${GREEN}Pihole Updates!${NC}"
+pihole arpflush
+pihole restartdns
+pihole -g
+pihole restartdns
+pihole -up
+uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
+
+echo $USER "@" $HOSTNAME "speedtest"
+speedtest --secure
+echo who -a && last -n 6
+sleep 3
+# Get the installed kernel version
+installed_kernel=$(uname -r)
+
+# URL to the Raspberry Pi kernel repository
+url="https://api.github.com/repos/raspberrypi/linux"
+
+# Get the repository information
+repo_info=$(curl -s "$url")
+
+# Extract the default branch
+default_branch=$(echo "$repo_info" | grep -m 1 '"default_branch":' | cut -d'"' -f4)
+# Extract the version number from the default branch
+latest_kernel=$(echo "$default_branch" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | cut -d'.' -f1)
+echo "latest: $latest_kernel"
+echo "default: $default_branch"
+sleep 5
+
+# Get the system uptime in seconds
+uptime_timestamp=$(printf "%.0f" $(cut -d' ' -f1 /proc/uptime))
+
+uname -a
+echo -e "${YELLOW}l8r ! " $USER "@" $HOSTNAME "${NC}"
+neofetch
+inxi
+sleep 3
+# Get the uptime of the system
+uptime=$(uptime -s)
+
+# Get the current timestamp
+current_timestamp=$(date +%s)
+
+# Convert uptime to timestamp
+uptime_timestamp=$(date -d "$uptime" +%s)
+
+# Calculate the time difference in seconds
+time_difference=$((current_timestamp - uptime_timestamp))
+
+# Convert time difference to days, hours, and minutes
+days=$((time_difference / 86400))
+hours=$(( (time_difference % 86400) / 3600 ))
+minutes=$(( (time_difference % 3600) / 60 ))
+
+# Check if the system has been running for longer than three days
+if [[ $time_difference -ge $((3 * 24 * 3600)) ]]; then
+  echo -e "${RED} WARNING! ${YELLOW}The system has been running for longer than three days.${NC}"
+  echo -e "${RED}System uptime: $days days, $hours hours, $minutes minutes "
+if [[ $running_kernel != $installed_kernel ]]; then
+    read -p "The running kernel ($running_kernel) differs from the installed kernel ($installed_kernel). Do you want to reboot? (Y/n): " choice
+if [[ $choice != [Nn] ]]; then
+    echo -e "${RED}Rebooting...${NC}"
+      echo $USER "@" $HOSTNAME
+      # Uncomment the following line to perform the reboot
+       sudo reboot
+    else
+      echo -e "${RED}Reboot denied.${NC}"
+    fi
+  else
+    echo -e "The running kernel ($running_kernel) ${GREEN}matches${NC} the installed kernel ($installed_kernel). ${GREEN}No reboot required.${NC}"
+  fi
+else
+  echo -e "The system has ${GREEN}not${NC} been running for longer than ${YELLOW}three${NC} days. ${GREEN}No reboot required.${NC}"
+  echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes${NC}"
+
+# Default to "no" if running for less than three days
+  read -p "Do you want to reboot? (y/N): " choice
+  if [[ $choice == [Yy] ]]; then
+    echo -e "${RED}Rebooting...${NC}"
+    echo $USER "@" $HOSTNAME
+    # Uncomment the following line to perform the reboot
+     sudo reboot
+  else
+    echo -e "${YELLOW}Reboot skipped${NC}."
+  fi
+fi
+
+echo $USER "@" $HOSTNAME
+neofetch
+inxi
+uname -a
+echo -e "${GREEN}fin ;p  ;-p ${NC}";
