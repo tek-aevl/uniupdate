@@ -1,0 +1,257 @@
+#!/bin/bash
+echo "## To use this in cli use"
+echo "sudo nano /bin/usr/update
+# copy the next 3 lines into it with, and chmod it to 755  
+#!/bin/bash
+bash <(curl -s https://raw.githubusercontent.com/tek-aevl/umupdate/main/debupdate)
+echo 'bye';";
+echo "#To use run"
+echo "bash update"
+sleep 4
+# Set the colors
+RED='\033[0;31m'       # Red color
+LIGHT_RED='\033[0;91m'    # Light red color
+YELLOW='\033[0;33m'    # Yellow color
+LIGHT_YELLOW='\033[0;93m' # Light yellow color
+GREEN='\033[0;32m'     # Green color
+LIGHT_GREEN='\033[0;92m'  # Light green color
+BLUE='\033[0;34m'         # Blue color
+LIGHT_BLUE='\033[0;94m'   # Light blue color
+MAGENTA='\033[0;35m'      # Magenta color
+CYAN='\033[0;36m'         # Cyan color
+WHITE='\033[0;37m'        # White color
+LIGHT_GRAY='\033[0;90m'   # Light gray color
+DARK_GRAY='\033[0;30m'    # Dark gray color
+NC='\033[0m'           # No color
+echo -e "This ${RED}text${NC} is ${RED}red.${NC}"
+echo -e "This ${YELLOW}text${NC} is ${YELLOW}yellow.${NC}"
+echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
+sleep 4
+
+# Get the IP address of the host
+HOST_IP=$(hostname -I | awk '{print $1}')
+
+# Display a welcome message
+echo -e "${GREEN}Welcome $USER@$HOSTNAME ($HOST_IP)"
+sleep 1
+
+# Display system information
+echo ":~${HOST_IP} uname -a"
+uname -a
+sleep 1
+echo -e "${NC}"
+# Display login history
+echo ":~${HOST_IP} last -10"
+last -10
+sleep 1
+
+# Display information about users currently logged in
+echo ":~${HOST_IP} who -a"
+who -a
+sleep 1
+
+echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
+# Upgrade and Update the system
+sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove
+echo -e "${NC}"
+# Check if bc command is installed
+if ! command -v bc &> /dev/null; then
+  # curl command is not found, install it
+  echo "Installing curl..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y bc
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy bc
+  else
+    echo "Unable to install bc. Please install it manually."
+ fi
+fi
+echo -e "${GREEN}bc Passed${NC}"
+
+# Check if curl command is installed
+if ! command -v curl &> /dev/null; then
+  # curl command is not found, install it
+  echo "Installing curl..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y curl
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy curl
+  else
+    echo "Unable to install curl. Please install it manually."
+ fi
+fi
+echo -e "${GREEN}curl Passed${NC}"
+
+# Check if inxi command is installed
+if ! command -v inxi &> /dev/null; then
+  # inxi command is not found, install it
+  echo "Installing inxi..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y inxi
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy inxi
+  else
+    echo "Unable to install inxi. Please install it manually."
+  fi
+fi
+echo -e "${GREEN}inxi Passed${NC}"
+
+# Check if neofetch command is installed
+if ! command -v neofetch &> /dev/null; then
+  # inxi command is not found, install it
+  echo "Installing neofetch..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y neofetch
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy neofetch
+  else
+    echo "Unable to install inxi. Please install it manually."
+ fi
+fi
+echo -e "${GREEN}neofetch Passed${NC}"
+
+# Check if speedtest command is installed
+if ! command -v speedtest &> /dev/null; then
+  # speedtest command is not found, install it
+  echo "Installing speedtest..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y speedtest-cli
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy speedtest-cli
+  else
+    echo "Unable to install speedtest-cli. Please install it manually."
+  fi
+fi
+echo -e "${GREEN}speedtest Passed${NC}"
+
+echo "get-time $USER@$HOSTNAME ($HOST_IP)"
+# Get the current timestamp
+current_timestamp=$(date +%s)
+echo "do-math $USER@$HOSTNAME ($HOST_IP)"
+# Get the timestamp of three days ago
+three_days_ago=$(date -d '3 days ago' +%s)
+
+# Get the uptime of the system
+echo "uptime $USER@$HOSTNAME ($HOST_IP)"
+uptime=$(uptime -s)
+# Convert uptime to timestamp
+uptime_timestamp=$(date -d "$uptime" +%s)
+
+# Calculate the time difference in seconds
+time_difference=$((current_timestamp - uptime_timestamp))
+
+# Convert time difference to days, hours, and minutes
+ 
+uptime_seconds=$(cut -d' ' -f1 /proc/uptime)
+uptime_seconds=$(printf "%.0f" "$uptime_seconds")
+
+#days=$(uptime_seconds / 86400)
+#hours=$(uptime_seconds % 86400 / 3600)
+#minutes=$(uptime_seconds % 3600 / 60)
+days=$(echo "$uptime_seconds / 86400" | bc)
+hours=$(echo "$uptime_seconds % 86400 / 3600" | bc)
+minutes=$(echo "$uptime_seconds % 3600 / 60" | bc)
+
+echo -e "${YELLOW} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
+sleep 4
+# Get the running kernel version
+version=$(uname -r)
+echo "Running kernel $version"
+# Extract major version using regular expression
+if [[ $version =~ ^([0-9]+\.[0-9]+\.[0-9]+).* ]]; then
+    version="${BASH_REMATCH[1]}"
+   else
+  echo -e "${RED} Warning!!!${NC}"
+  echo -e "${RED}Invalid version format${NC}"
+sleep 10
+fi
+running_kernel=$version
+# Get the installed kernel version
+installed_kernel=$(dpkg --list | grep "linux-image" | awk '{print $3}' | awk -F'-' '{print $1}' | sort -V | tail -n1)
+# Input version string
+version=""
+version=$(dpkg --list | grep "linux-image" | awk '{print $3}' | awk -F'-' '{print $1}' | sort -V | tail -n1)
+echo -e "${YELLOW}Running kernel   ${BLUE}: $running_kernel ${NC}"
+echo -e "${YELLOW}Installed kernel ${BLUE}: $installed_kernel ${NC}"
+
+# Extract major version using regular expression
+if [[ $version =~ ^([0-9]+\.[0-9]+\.[0-9]+).* ]]; then
+  version="${BASH_REMATCH[1]}"
+else
+  echo -e "${RED}Invalid version format, is this linux real?${NC}"
+  echo -e "${LIGHT_RED}Skipping${NC}"
+fi
+installed_kernel=$version
+if [[ $running_kernel != $installed_kernel ]]; then
+  echo "pick $USER@$HOSTNAME ($HOST_IP)" &&  uname -a
+  read -p "The running kernel ($running_kernel) differs from the installed kernel ($installed_kernel). Do you want to reboot? (y/N): " choice
+  if [[ $choice == [Yy] ]]; then
+    echo -e "${RED}Rebooting...{NC}"
+       echo -e "L8r $USER@$HOSTNAME ($HOST_IP)"
+    # Uncomment the following line to perform the reboot
+    sleep 3 
+      sudo reboot
+  else
+    echo -e "${LIGHT_RED}Reboot denied.${NC}"  
+     sleep 3 
+    echo "  $USER@$HOSTNAME ($HOST_IP)"
+  fi
+else
+echo -e "${GREEN}Running   version >>: $running_kernel ${NC}"
+echo -e "${BLUE}Installed version >>: $installed_kernel ${NC}"
+uname -a
+sleep 1 
+echo -e "The running kernel $running_kernel ${GREEN}matches${NC} the installed kernel $installed_kernel. ${YELLOW}No reboot required.${NC}"
+  
+if [[ $uptime_seconds -ge $((3 * 24 * 3600)) ]]; then
+
+echo -e "${RED} The system has been running for longer than three days. ${NC}"  
+echo -e "${YELLOW} System uptime: $days days, $hours hours, $minutes minutes ${NC}"
+    read -p "Would you like to reboot now? (Y/n): " choice
+    if [[ $choice != [Nn] ]]; then
+      echo -e "${RED} Rebooting... $USER@$HOSTNAME ($HOST_IP) ${NC}"
+      # Uncomment the following line to perform the reboot
+          sleep 2
+          sudo reboot
+    else
+      echo -e "${RED} Reboot skipped. $USER@$HOSTNAME ($HOST_IP) ${NC} " && sleep 3
+    fi
+  else
+
+echo -e "${GREEN} So good news! ${NC} $USER@$HOSTNAME ($HOST_IP)"   
+echo -e " The system has ${GREEN}not${NC} been running for longer than ${YELLOW}three${NC} days. ${RED}No reboot required. ${NC}"
+echo -e "${GREEN} System uptime: $days days, $hours hours, $minutes minutes ${NC}"
+echo "uptime $USER@$HOSTNAME ($HOST_IP)"
+uptime
+sleep 3
+    # Default to "no" if running for less than three days
+    read -p "Reboot Anyway? (y/N): " choice
+    if [[ $choice == [Yy] ]]; then
+      echo -e "${RED} Rebooting... after 10 sec $USER@$HOSTNAME ($HOST_IP) ${NC}"
+       sleep 4 
+       neofetch
+       inxi  
+       uname -a
+      echo -e " ${RED} byah $USER@$HOSTNAME $HOST_IP ${NC} " && sleep 3
+       sudo reboot
+    else
+      echo -e "${GREEN} Reboot Skipped. $USER@$HOSTNAME ($HOST_IP) ${NC}"
+    fi
+  fi
+fi
+echo -e "${YELLOW}speedtest $HOST_IP${NC}"
+echo -e "${BLUE}"
+speedtest --secure
+echo -e "${NC}"
+neofetch
+inxi
+uname -a
+echo -e "${GREEN} Byah.!. $USER@$HOSTNAME ($HOST_IP) ${NC}"
+sleep 6
