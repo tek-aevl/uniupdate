@@ -3,7 +3,7 @@ echo "## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
-bash <(curl -s https://git.aevl.net/tek-aevl/umupdate/raw/branch/main/rpi-update)
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)
 echo 'bye';";
 echo "#To use run"
 echo "bash update"
