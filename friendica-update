@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Welcome $USER "
 echo "#To use this run it with
-curl -sSL https://raw.githubusercontent.com/tek-aevl/umupdate/main/friendica-update | bash
+curl -sSL https://git.aevl.net/tek/umupdate/raw/branch/main/friendica-update | bash
 "
 sleep 3
 bin/console maintenance 1 "We will be right back!"
