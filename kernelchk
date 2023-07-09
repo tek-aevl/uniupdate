@@ -1,0 +1,67 @@
+#!/bin/bash
+echo "Kernel linux-zen version check"
+uname -a
+echo "Hello " $USER "@" $HOSTNAME
+
+RED='\033[0;31m'       # Red color
+LIGHT_RED='\033[0;91m'    # Light red color
+YELLOW='\033[0;33m'    # Yellow color
+LIGHT_YELLOW='\033[0;93m' # Light yellow color
+GREEN='\033[0;32m'     # Green color
+LIGHT_GREEN='\033[0;92m'  # Light green color
+BLUE='\033[0;34m'         # Blue color
+LIGHT_BLUE='\033[0;94m'   # Light blue color
+MAGENTA='\033[0;35m'      # Magenta color
+CYAN='\033[0;36m'         # Cyan color
+WHITE='\033[0;37m'        # White color
+LIGHT_GRAY='\033[0;90m'   # Light gray color
+DARK_GRAY='\033[0;30m'    # Dark gray color
+NC='\033[0m'           # No color
+echo -e "This ${RED}text${NC} is ${RED}red.${NC}"
+echo -e "This ${YELLOW}text${NC} is ${YELLOW}yellow.${NC}"
+echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
+
+running_kernel=$(uname -r | sed 's/-zen$//;s/-/./')
+installed_kernel=$(pacman -Qi linux-zen | awk '/Version/ {print $3}')
+uptime=$(uptime -p)
+
+echo -e "${YELLOW}Running Kernel: $running_kernel${NC}"
+echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
+echo -e "${BLUE}System Uptime: $uptime${NC}"
+
+function version_compare() {
+    if [[ $1 == $2 ]]; then
+        echo "equal"
+    elif [[ $1 < $2 ]]; then
+        echo "less than"
+    else
+        echo "greater than"
+    fi
+}
+
+comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
+
+echo -e "${BLUE}Comparison Result:${YELLOW} $comparison_result ${NC}"
+
+if [[ "$comparison_result" != "equal" ]]; then
+        echo -e "Running kernel does not ${RED}match${NC} the installed kernel."
+        echo -e "${RED}It is recommended to reboot the system.${NC}"
+        sleep 5
+elif [[ $uptime == *"day"* ]]; then
+    days=$(echo $uptime | awk '{print $2}')
+    if (( days > 6 )); then
+        echo "Running kernel matches installed kernel, but the system has been running for more than 6 days."
+        echo -e "It is ${RED}recommended${NC} to ${RED}reboot${NC} the system."
+        sleep 5
+   else
+        echo "Running kernel matches installed kernel and the system has been running for less than 6 days."
+        echo -e "${GREEN}No reboot${NC} is necessary at this time."
+        sleep 5
+    fi
+else
+        echo "Running kernel matches installed kernel and the system has been running for less than 6 days."
+        echo -e "${GREEN}No reboot is necessary at this time.${NC}"
+        sleep 5
+fi
+
+sleep 6
