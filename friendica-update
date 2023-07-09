@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "Welcome $USER "
+echo "#To use this run it with
+curl -sSL https://raw.githubusercontent.com/tek-aevl/umupdate/main/friendica-update | bash
+"
+sleep 3
+bin/console maintenance 1 "We will be right back!"
+cp -r /var/www/html/friendica /var/www/html/friendica_backup
+cd /var/www/html/friendica
+git fetch
+git checkout stable
+git pull
+bin/composer.phar install --no-dev
+cd /var/www/html/friendica/addon
+git fetch
+git checkout stable
+git pull
+sudo chown -R www-data:www-data /var/www/html/friendica
+./bin/console dbstructure update && ./bin/console postupdate
+bin/console maintenance 0
