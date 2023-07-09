@@ -23,8 +23,8 @@ for ip in $ip_list; do
     echo "Connecting to $ip"
     if check_pihole $ip; then
       echo "Pi-hole detected on $IP"
-      ssh -y -X $ip "bash <(curl -s https://git.aevl.net/tek-aevl/umupdate/raw/branch/main/rpi-update)"
+      ssh -y -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)"
     else
-      ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek-aevl/umupdate/raw/branch/main/debupdate)"
+      ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
