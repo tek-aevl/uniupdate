@@ -5,9 +5,8 @@ echo "sudo nano /bin/usr/update
 #!/bin/bash
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)
 echo 'bye'
-";
-echo "#To use run"
-echo "bash update"
+#To use run
+";echo "bash update"
 sleep 4
 # Set the colors
 RED='\033[0;31m'       # Red color
