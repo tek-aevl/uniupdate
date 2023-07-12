@@ -41,6 +41,7 @@ days=$((time_difference / 86400))
 hours=$(( (time_difference % 86400) / 3600 ))
 minutes=$(( (time_difference % 3600) / 60 ))
 
+echo $USER "@" $HOSTNAME
 echo -e "${RED}Reset logs anyway?${NC}"
 # Check if the system has been running for longer than three days
 read -e -i "no" -p "Force log reset? (yes/no): " force_log_reset
