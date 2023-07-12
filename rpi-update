@@ -7,7 +7,7 @@ bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)
 echo 'bye'
 #To use run
 bash update
-"
+";
 sleep 4
 # Set the colors
 RED='\033[0;31m'       # Red color
