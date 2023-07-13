@@ -8,7 +8,7 @@ echo 'bye'
 #To use run
 bash kernelchk
 ";sleep 4
-echo "Hello and welcome " $USER " this is " $HOSTNAME
+echo "Hello "$USER" and welcome this is "$HOSTNAME
 echo "Kernel  linux-zen version check"
 uname -a | lolcat
 
