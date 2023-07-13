@@ -1,7 +1,16 @@
 #!/bin/bash
+echo "## To use this in cli use"
+echo "sudo nano /bin/usr/kernelchk
+# copy the next 3 lines into it with, and chmod it to 755  
+#!/bin/bash
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/kernelchk)
+echo 'bye'
+#To use run
+bash kernelchk
+";sleep 4
+echo "Hello and welcome " $USER " this is " $HOSTNAME
 echo "Kernel  linux-zen version check"
 uname -a | lolcat
-echo "Hello " $USER "@" $HOSTNAME
 
 RED='\033[0;31m'       # Red color
 LIGHT_RED='\033[0;91m'    # Light red color
