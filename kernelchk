@@ -46,7 +46,7 @@ function version_compare() {
 
 comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
-echo -e "${BLUE}Comparison Result:${MAGENTA} $comparison_result ${NC}"
+echo -e "${BLUE}Comparison Result:${CYAN} $comparison_result ${NC}"
 
 if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
@@ -74,8 +74,8 @@ elif [[ $uptime == *"day"* ]]; then
     fi
 else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
-        echo -e "${CYAN}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${GREEN}System Uptime: $uptime${NC}"
+        echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
+        echo -e "${CYAN}System Uptime: $uptime${NC}"
         echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
         sleep 5
