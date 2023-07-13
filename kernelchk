@@ -46,7 +46,7 @@ function version_compare() {
 
 comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
-echo -e "${BLUE}Comparison Result:${CYAN} $comparison_result ${NC}"
+echo -e "${BLUE}Comparison Result:${MAGENTA} $comparison_result ${NC}"
 
 if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
