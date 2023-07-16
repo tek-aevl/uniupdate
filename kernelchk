@@ -46,12 +46,12 @@ function version_compare() {
 
 comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
-echo -e "${BLUE}Comparison Result:${MAGENTA} $comparison_result ${NC}"
+echo -e "${BLUE}Comparison Result:${LIGHT_BLUE} $comparison_result ${NC}"
 
 if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${CYAN}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${BLUE}System Uptime: $uptime${NC}"
+        echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
         sleep 5
