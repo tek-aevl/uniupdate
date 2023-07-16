@@ -30,7 +30,7 @@ echo -e "This ${RED}text${NC} is ${RED}red.${NC}"
 echo -e "This ${YELLOW}text${NC} is ${YELLOW}yellow.${NC}"
 echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
 
-running_kernel=$(uname -r | sed 's/[[:alpha:]]//g; s/\(.*\)-/\1./')
+running_kernel=$(uname -r | sed 's/-zen$//;s/-/./')
 installed_kernel=$(pacman -Qi linux-zen | awk '/Version/ {print $3}')
 uptime=$(uptime -p)
 
