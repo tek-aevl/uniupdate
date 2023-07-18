@@ -24,7 +24,7 @@ WHITE='\033[0;37m'        # White color
 LIGHT_GRAY='\033[0;90m'   # Light gray color
 CYAN='\033[0;30m'    # Dark gray color
 NC='\033[0m'           # No color
-echo "Hello "$USER" I am "$HOSTNAME " let's begin!"
+echo "Hello "$USER" I am "$HOSTNAME" let's begin!"
 echo "Kernel  linux-zen version check"
 uname -a | lolcat
 
