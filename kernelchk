@@ -8,7 +8,7 @@ echo 'end of kernelchk'
 #To use run
 bash kernelchk
 ";sleep 4
-echo "Hello "$USER" and welcome this is "$HOSTNAME
+echo "Hello "$USER" I am "$HOSTNAME " let's begin!"
 echo "Kernel  linux-zen version check"
 uname -a | lolcat
 
