@@ -71,7 +71,7 @@ sleep 3
  sudo du -h /etc/pihole/pihole-FTL-old.db
 sleep 8
 else
-  echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No pihole log operations required.${NC}"
+  echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 fi
 
