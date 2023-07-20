@@ -50,14 +50,12 @@ ip_list="$arp_ip_list"
 for ip in $ip_list; do
     # Perform SSH connection to the device
     echo "Connecting to $ip"
+          # Call ssh-copy-id function
+      copy_ssh_key
     if check_pihole $ip; then
       echo "Pi-hole detected on $ip"
-      # Call ssh-copy-id function
-      copy_ssh_key
       ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)"
     else
-      # Call ssh-copy-id function
-      copy_ssh_key
       ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
