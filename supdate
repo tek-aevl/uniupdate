@@ -9,6 +9,24 @@ echo "#To use run"
 echo "bash update"
 sleep 4
 
+# Function to copy SSH key to a remote host
+function copy_ssh_key() {
+    read -p "Do you want to copy your SSH key to the remote host? (yes/no) [no]: " answer
+    answer=${answer:-no}  # Set the default value to 'no' if the user doesn't provide any input
+
+    if [[ $answer == "yes" ]]; then
+        read -p "Enter the IP address or hostname of the remote host: " ip
+        ssh-copy-id "$ip"
+
+        # If you want to display the results after the SSH key copy, you can use the following command
+        # ssh "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
+    elif [[ $answer == "no" ]]; then
+        echo "SSH key copy to the remote host skipped."
+    else
+        echo "Invalid input. Please enter 'yes' or 'no'."
+    fi
+}
+
 # Function to check if Pi-hole is installed and running on a host
 function check_pihole {
   # Check if the Pi-hole service is running
@@ -33,8 +51,12 @@ for ip in $ip_list; do
     echo "Connecting to $ip"
     if check_pihole $ip; then
       echo "Pi-hole detected on $IP"
+      # Call ssh-copy-id function
+      copy_ssh_key
       ssh -y -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)"
     else
+      # Call ssh-copy-id function
+      copy_ssh_key
       ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
