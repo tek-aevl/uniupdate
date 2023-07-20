@@ -11,12 +11,13 @@ sleep 4
 
 # Function to copy SSH key to a remote host
 function copy_ssh_key() {
-    read -p "Do you want to copy your SSH key to the remote host? (yes/no) [no]: " answer
+    read -p "Do you want to copy your SSH key to the remote host $IP? (yes/no) [no]: " answer
     answer=${answer:-no}  # Set the default value to 'no' if the user doesn't provide any input
 
     if [[ $answer == "yes" ]]; then
-        read -p "Enter the IP address or hostname of the remote host: " ip
-        ssh-copy-id "$ip"
+        #read -p "Enter the IP address or hostname of the remote host: " ip
+        echo "Current client $IP"
+        ssh-copy-id "$IP"
 
         # If you want to display the results after the SSH key copy, you can use the following command
         # ssh "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
