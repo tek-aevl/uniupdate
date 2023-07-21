@@ -53,7 +53,7 @@ if [[ "$comparison_result" = "equal" ]]; then
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
-        echo -e "${YELLOW}=${NC}"
+        echo -e "${YELLOW}!=${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
     days=$(echo $uptime | awk '{print $2}')
