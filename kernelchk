@@ -56,6 +56,7 @@ if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
+        echo -e "${YELLOW}!=${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
     days=$(echo $uptime | awk '{print $2}')
@@ -65,6 +66,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${RED}System Uptime: $uptime${NC}"
         echo -e "${LIGHT_GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
         echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
+        echo -e "${YELLOW}=>6${NC}"
         sleep 5
    else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
@@ -72,6 +74,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel{$NC} and the system has been running for less than 6 days."
         echo -e "${GREEN}Rebooting ${NC}is ${GREEN}unnecessary${NC} at this time."
+        echo -e "${YELLOW}=<6${NC}"
         sleep 5
     fi
 else
@@ -80,6 +83,7 @@ else
         echo -e "${LIGHT_RED}System Uptime: $uptime${NC}"
         echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
+        echo -e "${YELLOW}=&<6${NC}"
         sleep 5
 fi
 
