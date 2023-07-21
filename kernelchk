@@ -50,13 +50,13 @@ comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
 echo -e "${BLUE}Comparison Result:${LIGHT_BLUE} $comparison_result ${NC}"
 
-if [[ "$comparison_result" != "equal" ]]; then
+if [[ "$comparison_result" = "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
-        echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
-        echo -e "${YELLOW}!=${NC}"
+  #      echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
+  #      echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
+        echo -e "${YELLOW}=${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
     days=$(echo $uptime | awk '{print $2}')
@@ -83,7 +83,7 @@ else
         echo -e "${LIGHT_RED}System Uptime: $uptime${NC}"
         echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
-        echo -e "${YELLOW}=&<6${NC}"
+        echo -e "${YELLOW}!=&<6${NC}"
         sleep 5
 fi
 
