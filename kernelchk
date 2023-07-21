@@ -66,7 +66,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${RED}System Uptime: $uptime${NC}"
         echo -e "${LIGHT_GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
         echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
-        echo -e "${YELLOW}=>6${NC}"
+        echo -e "${RED}=>6${NC}"
         sleep 5
    else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
@@ -80,10 +80,10 @@ elif [[ $uptime == *"day"* ]]; then
 else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${LIGHT_RED}System Uptime: $uptime${NC}"
+        echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
-        echo -e "${YELLOW}!=&<6${NC}"
+        echo -e "${GREEN}=&<6${NC}"
         sleep 5
 fi
 
