@@ -54,7 +54,7 @@ if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "${LIGHT_GREEN}Running kernel does not ${RED}match${NC} the installed kernel."
+        echo -e "${LIGHT_RED}Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
@@ -63,7 +63,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${LIGHT_BLUE}Running Kernel: $running_kernel${NC}"
         echo -e "${LIGHT_BLUE}Installed Kernel: $installed_kernel${NC}"
         echo -e "${RED}System Uptime: $uptime${NC}"
-        echo -e "${LIGHT_GREEN}Running kernel matches installed kernel, but the system has been running for more than 6 days."
+        echo -e "${LIGHT_GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
         echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
         sleep 5
    else
