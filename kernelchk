@@ -54,8 +54,8 @@ if [[ "$comparison_result" = "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-  #      echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
-  #      echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
+        echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
+        echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
         echo -e "${YELLOW}=${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
