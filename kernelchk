@@ -19,10 +19,10 @@ LIGHT_GREEN='\033[0;92m'  # Light green color
 BLUE='\033[0;34m'         # Blue color
 LIGHT_BLUE='\033[0;94m'   # Light blue color
 MAGENTA='\033[0;35m'      # Magenta color
-CYAN='\033[0;36m'         # Cyan color
+LIGHT_RED='\033[0;36m'         # LIGHT_RED color
 WHITE='\033[0;37m'        # White color
 LIGHT_GRAY='\033[0;90m'   # Light gray color
-CYAN='\033[0;30m'    # Dark gray color
+LIGHT_RED='\033[0;30m'    # Dark gray color
 NC='\033[0m'           # No color
 echo "Hello "$USER" I am "$HOSTNAME" let's begin!"
 echo "Kernel linux-zen version check"
@@ -38,11 +38,11 @@ uptime=$(uptime -p)
 
 function version_compare() {
     if [[ $1 == $2 ]]; then
-        echo "equal"
+        echo -e "${GREEN}equal${NC}"
     elif [[ $1 < $2 ]]; then
-        echo "less than"
+        echo -e "${RED}Less${NC} than!"
     else
-        echo "greater than"
+        echo -e "${LIGHT_RED}Greater${NC} than!"
     fi
 }
 
@@ -52,7 +52,7 @@ echo -e "${BLUE}Comparison Result:${LIGHT_BLUE} $comparison_result ${NC}"
 
 if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
-        echo -e "${CYAN}Installed Kernel: $installed_kernel${NC}"
+        echo -e "${LIGHT_RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
@@ -77,7 +77,7 @@ elif [[ $uptime == *"day"* ]]; then
 else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${CYAN}System Uptime: $uptime${NC}"
+        echo -e "${LIGHT_RED}System Uptime: $uptime${NC}"
         echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
         sleep 5
