@@ -97,6 +97,7 @@ url="https://api.github.com/repos/raspberrypi/linux"
 # Get the repository information
 repo_info=$(curl -s "$url")
 
+uname -a
 # Extract the default branch
 default_branch=$(echo "$repo_info" | grep -m 1 '"default_branch":' | cut -d'"' -f4)
 # Extract the version number from the default branch
