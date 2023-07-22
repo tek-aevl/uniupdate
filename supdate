@@ -20,7 +20,7 @@ function copy_ssh_key() {
         ssh-copy-id "$ip"
 
         # If you want to display the results after the SSH key copy, you can use the following command
-        # ssh "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
+        # ssh -ty "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
     elif [[ $answer == "no" ]]; then
         echo "SSH key copy to the remote host skipped."
     else
@@ -42,9 +42,12 @@ function check_pihole {
 
 # Retrieve IP addresses from ARP table
 arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
-
+# Retrieve active clients in the bridge
+bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
+# custom list 
+custom_ip_list="100.66.191.44"$'\n'"100.66.191.44"
 # Combine the IP lists
-ip_list="$arp_ip_list"
+ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"
 
 # Iterate over each IP address and perform SSH connection
 for ip in $ip_list; do
@@ -54,8 +57,9 @@ for ip in $ip_list; do
       copy_ssh_key
     if check_pihole $ip; then
       echo "Pi-hole detected on $ip"
-      ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)"
+      ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)"
     else
-      ssh -ty -X $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
+      echo "Running Debain Updates on $ip"
+      ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
