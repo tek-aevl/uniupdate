@@ -37,13 +37,15 @@ function copy_ssh_key() {
     fi
 
     # Check if the SSH key is already present on the remote host
-    if ! ssh "$ip" '[ -f ~/.ssh/authorized_keys ] && grep -qF "$(cat ~/.ssh/id_rsa.pub)" ~/.ssh/authorized_keys'; then
+    if ! ssh-add -L | grep -qF "$(cat ~/.ssh/id_rsa.pub)"; then
+        #read -p "Enter the IP address or hostname of the remote host: " ip
         echo "Current client $ip"
         ssh-copy-id "$ip"
     else
         echo "SSH key is already copied to the remote host. No need to copy again."
     fi
 }
+
 
 
 # Function to check if Pi-hole is installed and running on a host
