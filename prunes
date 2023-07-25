@@ -60,7 +60,6 @@ echo "done..."
 echo "combine the list"
 # Combine the IP lists
 ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
-ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
 
 echo "done..."
 
