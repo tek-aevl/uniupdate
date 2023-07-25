@@ -51,12 +51,18 @@ echo "done..."
 
 echo "Working this out"
 # Iterate over each IP address and perform SSH connection
+
 for ip in $ip_list; do
     # Perform SSH connection to the device
-       echo "Connecting to $ip"
+     echo "Connecting to $ip"
      # Call ssh-copy-id function
-       copy_ssh_key
-     echo "Running Prune on $ip"
+    copy_ssh_key
+    if check_pihole $ip; then
+      echo "Pi-hole detected on $ip"
+    else
+      echo "Running Debian Based Updates on $ip"
    ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
-     echo "Finished Running Prune on $ip"
+    fi
+
+
 done
