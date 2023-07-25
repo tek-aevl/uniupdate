@@ -7,8 +7,8 @@ bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prunes)
 echo 'bye';";
 echo "#To use run"
 echo "bash prunes"
-sleep 3
 
+echo "Setting functions"
 # Function to check and copy SSH key to a remote host if needed
 function copy_ssh_key() {
     if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
@@ -37,6 +37,7 @@ function check_pihole {
   fi
   return 1  # Pi-hole is not installed or not running
 }
+echo "done.."
 
 echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
