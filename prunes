@@ -72,11 +72,10 @@ for ip in $ip_list; do
      # Call ssh-copy-id function
     copy_ssh_key
     if check_pihole $ip; then
-      echo "Pi-hole detected on $ip"
+      echo "Pi-hole detected on $ip skipping"
     else
-      echo "Running Debian Based Updates on $ip"
+      echo "Pruning $ip"
    ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
     fi
-
-
+echo "moving on from $ip"
 done
