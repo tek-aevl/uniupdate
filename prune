@@ -1,19 +1,27 @@
 #!/bin/bash
 echo "$USER pruning @$ip"
-echo "Podman List"
-sudo podman ps
-echo "Stop all"
-sudo podman stop --all
-echo "Prune?"
-sudo podman container prune
-sudo podman ps
-echo "Updating"
-sudo podman pull cloudflare/cloudflared
-echo "bash start"
-echo "starting if device has it on $ip"
-sleep 1
-echo "if next line is an error you need to make the file on the vm, and add the cloudflare connector info"
-bash /usr/bin/start
-echo "resuming..."
-echo "Status"
-sudo podman ps
+#!/bin/bash
+
+if command -v podman &>/dev/null; then
+    echo "Podman is installed. Proceeding with the commands..."
+    echo "Podman List"
+    sudo podman ps
+    echo "Stop all"
+    sudo podman stop --all
+    echo "Prune?"
+    sudo podman container prune
+    sudo podman ps
+    echo "Updating"
+    sudo podman pull cloudflare/cloudflared
+    echo "bash start"
+    echo "starting if device has it on $ip"
+    sleep 1
+    echo "if next line is an error you need to make the file on the vm, and add the cloudflare docker connector info"
+    bash /usr/bin/start
+    echo "resuming..."
+    echo "Status"
+    sudo podman ps
+else
+    echo "Error: Podman not found. Please install Podman and try again."
+    exit 1
+fi
