@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Welcome $USER this is prunes"
+echo "Welcome $USER this is prunes $ip"
 echo "Podman List"
 sudo podman ps
 echo "Stop all"
@@ -11,6 +11,7 @@ echo "Updating"
 sudo podman pull cloudflare/cloudflared
 echo "bash start"
 sleep 2
+echo "starting if device has it on $ip"
 bash /usr/bin/start
 echo "resuming..."
 echo "Status"
