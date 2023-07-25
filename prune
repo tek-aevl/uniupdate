@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Podman List"
+sudo podman ps
+echo "Stop all"
+sudo podman stop --all
+echo "Prune?"
+sudo podman container prune
+sudo podman ps
+echo "Updating"
+sudo podman pull cloudflare/cloudflared
+bash /usr/bin/start
