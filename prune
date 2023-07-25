@@ -11,6 +11,7 @@ echo "Updating"
 sudo podman pull cloudflare/cloudflared
 echo "bash start"
 echo "starting if device has it on $ip"
+sleep 1
 bash /usr/bin/start
 echo "resuming..."
 echo "Status"
