@@ -9,3 +9,5 @@ sudo podman ps
 echo "Updating"
 sudo podman pull cloudflare/cloudflared
 bash /usr/bin/start
+echo "Status"
+sudo podman ps
