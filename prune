@@ -22,5 +22,4 @@ if command -v podman &>/dev/null; then
     sudo podman ps
 else
     echo "Error: Podman not found. Please install Podman and try again."
-    exit 1
 fi
