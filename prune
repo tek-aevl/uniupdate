@@ -10,7 +10,6 @@ sudo podman ps
 echo "Updating"
 sudo podman pull cloudflare/cloudflared
 echo "bash start"
-sleep 2
 echo "starting if device has it on $ip"
 bash /usr/bin/start
 echo "resuming..."
