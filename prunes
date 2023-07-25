@@ -1,33 +1,13 @@
 #!/bin/bash
 echo "## To use this in cli use"
-echo "sudo nano /bin/usr/update
+echo "sudo nano /bin/usr/prunes
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prunes)
 echo 'bye';";
 echo "#To use run"
-echo "bash update"
-sleep 4
-
-#removing
-# Function to copy SSH key to a remote host
-#function copy_ssh_key() {
-#    read -p "Do you want to copy your SSH key to the remote host $IP? (yes/no) [yes]: " answer
-#    answer=${answer:-yes}  # Set the default value to 'yes' if the user doesn't provide any input
-
- #   if [[ $answer == "yes" ]]; then
- #       #read -p "Enter the IP address or hostname of the remote host: " ip
- #       echo "Current client $ip"
- #       ssh-copy-id "$ip"
-
-        # If you want to display the results after the SSH key copy, you can use the following command
- #       # ssh -ty "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
- #   elif [[ $answer == "no" ]]; then
- #       echo "SSH key copy to the remote host skipped."
- #   else
- #       echo "Invalid input. Please enter 'yes' or 'no'."
- #   fi
-#}
+echo "bash prunes"
+sleep 3
 
 # Function to check and copy SSH key to a remote host if needed
 function copy_ssh_key() {
@@ -82,10 +62,12 @@ for ip in $ip_list; do
      # Call ssh-copy-id function
     copy_ssh_key
     if check_pihole $ip; then
-      echo "Pi-hole detected on $ip"
+      echo "Pi-hole detected on $ip running prune"
       ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
+      echo "Finished Running Prune on $ip"
     else
-      echo "Running Debian Based Updates on $ip"
+      echo "Running Prune on $ip"
       ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
+      echo "Finished Running Prune on $ip"
     fi
 done
