@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Welcome $USER this is prunes"
 echo "Podman List"
 sudo podman ps
 echo "Stop all"
@@ -8,6 +9,9 @@ sudo podman container prune
 sudo podman ps
 echo "Updating"
 sudo podman pull cloudflare/cloudflared
+echo "bash start"
+sleep 2
 bash /usr/bin/start
+echo "resuming..."
 echo "Status"
 sudo podman ps
