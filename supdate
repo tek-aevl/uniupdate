@@ -9,24 +9,42 @@ echo "#To use run"
 echo "bash update"
 sleep 4
 
+#removing
 # Function to copy SSH key to a remote host
-function copy_ssh_key() {
-    read -p "Do you want to copy your SSH key to the remote host $IP? (yes/no) [yes]: " answer
-    answer=${answer:-yes}  # Set the default value to 'yes' if the user doesn't provide any input
+#function copy_ssh_key() {
+#    read -p "Do you want to copy your SSH key to the remote host $IP? (yes/no) [yes]: " answer
+#    answer=${answer:-yes}  # Set the default value to 'yes' if the user doesn't provide any input
 
-    if [[ $answer == "yes" ]]; then
-        #read -p "Enter the IP address or hostname of the remote host: " ip
-        echo "Current client $ip"
-        ssh-copy-id "$ip"
+ #   if [[ $answer == "yes" ]]; then
+ #       #read -p "Enter the IP address or hostname of the remote host: " ip
+ #       echo "Current client $ip"
+ #       ssh-copy-id "$ip"
 
         # If you want to display the results after the SSH key copy, you can use the following command
-        # ssh -ty "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
-    elif [[ $answer == "no" ]]; then
-        echo "SSH key copy to the remote host skipped."
+ #       # ssh -ty "$ip" 'ls -l ~/.ssh'  # Replace 'ls -l ~/.ssh' with any command you want to execute on the remote host.
+ #   elif [[ $answer == "no" ]]; then
+ #       echo "SSH key copy to the remote host skipped."
+ #   else
+ #       echo "Invalid input. Please enter 'yes' or 'no'."
+ #   fi
+#}
+
+# Function to check and copy SSH key to a remote host if needed
+function copy_ssh_key() {
+    if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
+        echo "SSH key not found. Generating a new SSH key..."
+        ssh-keygen -t rsa
+    fi
+
+    # Check if the SSH key is already present on the remote host
+    if ! ssh "$ip" '[ -f ~/.ssh/authorized_keys ] && grep -qF "$(cat ~/.ssh/id_rsa.pub)" ~/.ssh/authorized_keys'; then
+        echo "Current client $ip"
+        ssh-copy-id "$ip"
     else
-        echo "Invalid input. Please enter 'yes' or 'no'."
+        echo "SSH key is already copied to the remote host. No need to copy again."
     fi
 }
+
 
 # Function to check if Pi-hole is installed and running on a host
 function check_pihole {
