@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Welcome $USER this is prune @$ip"
+echo "$USER pruning @$ip"
 echo "Podman List"
 sudo podman ps
 echo "Stop all"
