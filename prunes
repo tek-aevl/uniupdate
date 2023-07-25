@@ -8,6 +8,7 @@ echo 'bye';";
 echo "#To use run"
 echo "bash prunes"
 
+echo "Starting!"
 echo "Setting functions"
 # Function to check and copy SSH key to a remote host if needed
 function copy_ssh_key() {
@@ -54,7 +55,7 @@ echo "$bridge_clients done..."
 
 echo "Retrieving custom_ip_list"
 # custom list 
-custom_ip_list="100.66.191.44"$'\n'"100.66.191.44"
+custom_ip_list="0.0.0.0"$'\n'"0.0.0.0"
 echo "done..."
 
 echo "combine the list"
