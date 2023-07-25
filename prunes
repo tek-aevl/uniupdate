@@ -27,19 +27,6 @@ function copy_ssh_key() {
 }
 
 
-
-# Function to check if Pi-hole is installed and running on a host
-function check_pihole {
-  # Check if the Pi-hole service is running
-  if ssh -q -o ConnectTimeout=1 $1 "systemctl is-active pihole-FTL.service &> /dev/null"; then
-    # Check if the Pi-hole web interface is accessible
-    if curl -s -I -H "Host: pi.hole" http://$1/admin/ &> /dev/null; then
-      return 0  # Pi-hole is installed and running
-    fi
-  fi
-  return 1  # Pi-hole is not installed or not running
-}
-
 # Retrieve IP addresses from ARP table
 arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
 
@@ -58,16 +45,10 @@ ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailsca
 # Iterate over each IP address and perform SSH connection
 for ip in $ip_list; do
     # Perform SSH connection to the device
-     echo "Connecting to $ip"
+       echo "Connecting to $ip"
      # Call ssh-copy-id function
-    copy_ssh_key
-    if check_pihole $ip; then
-      echo "Pi-hole detected on $ip running prune"
-      ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
-      echo "Finished Running Prune on $ip"
-    else
-      echo "Running Prune on $ip"
-      ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
-      echo "Finished Running Prune on $ip"
-    fi
+       copy_ssh_key
+     echo "Running Prune on $ip"
+   ssh -ty $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)"
+     echo "Finished Running Prune on $ip"
 done
