@@ -12,6 +12,7 @@ sudo podman pull cloudflare/cloudflared
 echo "bash start"
 echo "starting if device has it on $ip"
 sleep 1
+echo "if next line is an error you need to make the file on the vm, and add the cloudflare connector info"
 bash /usr/bin/start
 echo "resuming..."
 echo "Status"
