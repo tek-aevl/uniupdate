@@ -7,16 +7,14 @@ bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/supdate)
 echo 'bye';";
 echo "#To use run"
 echo "bash update"
-sleep 4
-
-
+sleep 2
+echo "setting functions"
 # Function to check and copy SSH key to a remote host if needed
 function copy_ssh_key() {
     if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
         echo "SSH key not found. Generating a new SSH key..."
         ssh-keygen -t rsa
     fi
-
     # Check if the SSH key is already present on the remote host
     if ! ssh-add -L | grep -qF "$(cat ~/.ssh/id_rsa.pub)"; then
         #read -p "Enter the IP address or hostname of the remote host: " ip
@@ -26,8 +24,6 @@ function copy_ssh_key() {
         echo "SSH key is already copied to the remote host. No need to copy again."
     fi
 }
-
-
 
 # Function to check if Pi-hole is installed and running on a host
 function check_pihole {
@@ -40,6 +36,7 @@ function check_pihole {
   fi
   return 1  # Pi-hole is not installed or not running
 }
+echo "done..."
 
 echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
