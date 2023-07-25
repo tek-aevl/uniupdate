@@ -39,10 +39,10 @@ function check_pihole {
 }
 echo "done.."
 
-#echo "Retrieving ARP table"
+echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
-#arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
-#echo "done..."
+arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
+echo "done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
