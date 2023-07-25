@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "$USER pruning @$ip"
-#!/bin/bash
-
+echo "Checking for podman"
 if command -v podman &>/dev/null; then
     echo "Podman is installed. Proceeding with the commands..."
     echo "Podman List"
