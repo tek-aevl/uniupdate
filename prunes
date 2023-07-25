@@ -25,6 +25,7 @@ function copy_ssh_key() {
         echo "SSH key is already copied to the remote host. No need to copy again."
     fi
 }
+
 # Function to check if Pi-hole is installed and running on a host
 function check_pihole {
   # Check if the Pi-hole service is running
@@ -36,7 +37,6 @@ function check_pihole {
   fi
   return 1  # Pi-hole is not installed or not running
 }
-
 
 echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
