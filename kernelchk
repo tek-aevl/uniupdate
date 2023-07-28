@@ -42,7 +42,7 @@ function version_compare() {
     elif [[ $1 < $2 ]]; then
         echo -e "${RED}Less than${NC}!"
     else
-        echo -e "${LIGHT_RED}Greaterthan${NC} !"
+        echo -e "${LIGHT_RED}Greater than${NC}!"
     fi
 }
 
