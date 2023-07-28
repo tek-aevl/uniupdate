@@ -28,13 +28,14 @@ echo -e "This ${MAGENTA}text${NC} is ${MAGENTA}Magenta.${NC}"
 echo -e "This ${BLUE}text${NC} is ${BLUE}Blue.${NC}"
 echo -e "This ${WHITE}text${NC} is ${WHITE}White.${NC}"
 
+#test
+#running_kernel="6.4.6"
+#installed_kernel="6.4.6"
 
 running_kernel=$(uname -r | sed 's/-zen$//;s/-/./')
 installed_kernel=$(pacman -Qi linux-zen | awk '/Version/ {print $3}')
 uptime=$(uptime -p)
-#test
-#running_kernel="6.4.6"
-#installed_kernel="6.4.6"
+
 
 function version_compare() {
     if [[ $1 == $2 ]]; then
