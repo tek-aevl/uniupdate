@@ -72,7 +72,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel{$NC} and the system has been running for less than 6 days."
+        echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel$(NC} and the system has been running for less than 6 days."
         echo -e "${GREEN}Rebooting ${NC}is ${GREEN}unnecessary${NC} at this time."
         echo -e "${YELLOW}=<6${NC}"
         sleep 5
