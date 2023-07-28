@@ -16,6 +16,13 @@ GREEN='\033[0;32m'     # Green color
 BLUE='\033[0;34m'         # Blue color
 MAGENTA='\033[0;35m'      # Magenta color
 WHITE='\033[0;37m'        # White color
+# Define colors for the output
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+NC='\033[0m' # No Color
 NC='\033[0m'           # No color
 echo "Hello "$USER" I am "$HOSTNAME" let's begin!"
 echo "Kernel linux-zen version check"
@@ -49,13 +56,6 @@ function version_compare() {
 comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
 echo -e "${BLUE}Comparison Result:${BLUE} $comparison_result ${NC}"
-# Define colors for the output
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-MAGENTA='\033[0;35m'
-NC='\033[0m' # No Color
 
 # Function to check if the system needs a reboot
 check_reboot_required() {
