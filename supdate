@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.28# To use this in cli use"
+echo "#v.29# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -62,7 +62,7 @@ echo "combine the list"
 # Combine the IP lists
 ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
 echo "$ip_list done..."
-sleep 2
+sleep 5
 echo "Working this out"
 # Iterate over each IP address and perform SSH connection
 for ip in $ip_list; do
