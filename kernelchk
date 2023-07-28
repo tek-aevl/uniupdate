@@ -38,11 +38,11 @@ installed_kernel="6.4.5"
 
 function version_compare() {
     if [[ $1 == $2 ]]; then
-        echo -e "${GREEN}equal${NC}"
+        echo -e "${GREEN}Equal${NC}"
     elif [[ $1 < $2 ]]; then
-        echo -e "${RED}Less${NC} than!"
+        echo -e "${RED}Less than${NC}!"
     else
-        echo -e "${LIGHT_RED}Greater${NC} than!"
+        echo -e "${LIGHT_RED}Greaterthan${NC} !"
     fi
 }
 
