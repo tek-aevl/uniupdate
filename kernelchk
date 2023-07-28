@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.47# To use this in cli use"
+echo "#V.48# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -50,7 +50,7 @@ comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
 echo -e "${BLUE}Comparison Result:${BLUE} $comparison_result ${NC}"
 
-if [[ "$comparison_result" = "equal" ]]; then
+if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
