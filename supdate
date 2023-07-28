@@ -41,26 +41,27 @@ echo "done..."
 echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
 arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
-echo "done..."
+echo "$arp_ip_list done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
 bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
-echo "done..."
+echo "$bridge_clients done..."
 
 # Retrieve Tailscale client IP addresses from 'tailscale status' command
 tailscale_ip_list=$(tailscale status | grep -oE '10\.[0-9]+\.[0-9]+\.[0-9]+')
+echo "$tailscale_ip_list done.."
 
 echo "Retrieving custom_ip_list"
 # custom list 
 #custom_ip_list="0.0.0.0"$'\n'"0.0.0.0"
 custom_ip_list=""
-echo "done..."
+echo "#custom_ip_list  done..."
 
 echo "combine the list"
 # Combine the IP lists
 ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
-echo "done..."
+echo "$ip_list done..."
 
 echo "Working this out"
 # Iterate over each IP address and perform SSH connection
