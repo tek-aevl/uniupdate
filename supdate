@@ -72,9 +72,9 @@ for ip in $ip_list; do
     copy_ssh_key
     if check_pihole $ip; then
       echo "Pi-hole detected on $ip"
-      ssh -ty -S $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)|bash"
+      ssh -y -S $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)|bash"
     else
       echo "Running Debian Based Updates on $ip"
-      ssh -ty -S $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)|bash"
+      ssh -y $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)|bash"
     fi
 done
