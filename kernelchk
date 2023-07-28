@@ -49,42 +49,61 @@ function version_compare() {
 comparison_result=$(version_compare "$running_kernel" "$installed_kernel")
 
 echo -e "${BLUE}Comparison Result:${BLUE} $comparison_result ${NC}"
+# Define colors for the output
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+NC='\033[0m' # No Color
 
-if [[ "$comparison_result" != "equal" ]]; then
+# Function to check if the system needs a reboot
+check_reboot_required() {
+    local comparison_result="$1"
+    local running_kernel="$2"
+    local installed_kernel="$3"
+    local uptime="$4"
+
+    if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
         echo -e "${RED}You SHOULD reboot the system or reload the kernel. Asap!${NC}"
         echo -e "${YELLOW}!=${NC}"
-        sleep 5
-elif [[ $uptime == *"day"* ]]; then
-    days=$(echo $uptime | awk '{print $2}')
-    if (( days > 6 )); then
-        echo -e "${BLUE}Running Kernel: $running_kernel${NC}"
-        echo -e "${BLUE}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${RED}System Uptime: $uptime${NC}"
-        echo -e "${GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
-        echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
-        echo -e "${RED}=>6${NC}"
-        sleep 5
-   else
+    elif [[ "$uptime" == *"day"* ]]; then
+        local days=$(echo "$uptime" | awk '{print $2}')
+        if (( days > 6 )); then
+            echo -e "${BLUE}Running Kernel: $running_kernel${NC}"
+            echo -e "${BLUE}Installed Kernel: $installed_kernel${NC}"
+            echo -e "${RED}System Uptime: $uptime${NC}"
+            echo -e "${GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
+            echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
+            echo -e "${RED}=>6${NC}"
+        else
+            echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
+            echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
+            echo -e "${MAGENTA}System Uptime: $uptime${NC}"
+            echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel${NC} and the system has been running for less than 6 days."
+            echo -e "${GREEN}Rebooting ${NC}is ${GREEN}unnecessary${NC} at this time."
+            echo -e "${YELLOW}=<6${NC}"
+        fi
+    else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel${NC} and the system has been running for less than 6 days."
-        echo -e "${GREEN}Rebooting ${NC}is ${GREEN}unnecessary${NC} at this time."
-        echo -e "${YELLOW}=<6${NC}"
-        sleep 5
-    fi
-else
-        echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
-        echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
-        echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
+        echo -e "Running kernel matches installed kernel, and the system has been running for less than 6 days."
         echo -e "${GREEN}All Checks PASSED.${NC}"
         echo -e "${GREEN}=&<6${NC}"
-        sleep 5
-fi
+    fi
+}
+
+# Example usage:
+#comparison_result="equal"
+#running_kernel="4.19.1"
+#installed_kernel="4.19.1"
+#uptime="3 days 15 hours"
+
+check_reboot_required "$comparison_result" "$running_kernel" "$installed_kernel" "$uptime"
 
 sleep 6
