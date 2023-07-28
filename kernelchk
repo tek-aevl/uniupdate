@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.46# To use this in cli use"
+echo "#V.47# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -33,8 +33,8 @@ running_kernel=$(uname -r | sed 's/-zen$//;s/-/./')
 installed_kernel=$(pacman -Qi linux-zen | awk '/Version/ {print $3}')
 uptime=$(uptime -p)
 #test
-running_kernel="6.4.6"
-installed_kernel="6.4.5"
+running_kernel="6.4.5"
+installed_kernel="6.4.6"
 
 function version_compare() {
     if [[ $1 == $2 ]]; then
