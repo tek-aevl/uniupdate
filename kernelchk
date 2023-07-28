@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.49# To use this in cli use"
+echo "#V.50# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -55,7 +55,7 @@ if [[ "$comparison_result" != "equal" ]]; then
         echo -e "${RED}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
         echo -e "${YELLOW}Running kernel does not ${RED}match${NC} the installed kernel."
-        echo -e "${RED}You SHOULD reboot the system. Asap!${NC}"
+        echo -e "${RED}You SHOULD reboot the system or reload the kernel. Asap!${NC}"
         echo -e "${YELLOW}!=${NC}"
         sleep 5
 elif [[ $uptime == *"day"* ]]; then
