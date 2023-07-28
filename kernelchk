@@ -32,6 +32,9 @@ echo -e "This ${WHITE}text${NC} is ${WHITE}White.${NC}"
 running_kernel=$(uname -r | sed 's/-zen$//;s/-/./')
 installed_kernel=$(pacman -Qi linux-zen | awk '/Version/ {print $3}')
 uptime=$(uptime -p)
+#test
+running_kernel="6.4.6"
+installed_kernel="6.4.7"
 
 function version_compare() {
     if [[ $1 == $2 ]]; then
