@@ -49,7 +49,7 @@ bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
 echo "done..."
 
 # Retrieve Tailscale client IP addresses from 'tailscale status' command
-#tailscale_ip_list=$(tailscale status | grep -oE '10\.[0-9]+\.[0-9]+\.[0-9]+')
+tailscale_ip_list=$(tailscale status | grep -oE '10\.[0-9]+\.[0-9]+\.[0-9]+')
 
 echo "Retrieving custom_ip_list"
 # custom list 
