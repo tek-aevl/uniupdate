@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.14# To use this in cli use"
+echo "#V.14.1# To use this in cli use"
 echo "sudo nano /bin/prune
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -21,8 +21,7 @@ if command -v podman &>/dev/null; then
     sudo podman container prune
     sudo podman ps
     echo "Updating"
-    sudo podman pull 
-    #cloudflare/cloudflared
+    sudo podman pull cloudflare/cloudflared
     echo "bash start"
     echo "starting if device has it on $ip"
     sleep 1
