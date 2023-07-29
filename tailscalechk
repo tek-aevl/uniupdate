@@ -23,3 +23,8 @@ if [[ "$(echo -e "$installed_version\n$running_version" | sort -V | head -n1)" =
 else
     echo "Running version is up to date."
 fi
+echo "Running"
+sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}'
+echo "Installed"
+sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}'
+echo "fin ;-p"
