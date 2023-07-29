@@ -14,7 +14,7 @@ installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, ""
 echo $installed_version
 # Get the running version of tailscale
 running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
-echo running_version
+echo $running_version
 # Compare the versions using 'sort' command
 # '-V' flag performs a version sort (e.g., 1.2 < 1.11)
 if [[ "$installed_version" != "$running_version" ]]; then
