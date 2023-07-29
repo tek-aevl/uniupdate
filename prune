@@ -1,4 +1,14 @@
 #!/bin/bash
+echo "#V.13# To use this in cli use"
+echo "sudo nano /bin/prune
+# copy the next 3 lines into it with, and chmod it to 755  
+#!/bin/bash
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/prune)
+echo 'end of prune'
+#To use run
+bash prune
+";echo "Sleeping for 4";sleep 4
+
 echo "$USER pruning @$ip"
 echo "Checking for podman"
 if command -v podman &>/dev/null; then
