@@ -1,0 +1,25 @@
+#!/bin/bash
+echo "#v.01# To use this in cli use"
+echo "sudo nano /bin/usr/tailscalechk
+# copy the next 3 lines into it with, and chmod it to 755  
+#!/bin/bash
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/tailscalechk)
+echo 'bye';";
+echo "#To use run"
+echo "bash update"
+sleep 2
+
+# Get the installed version of tailscale
+installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
+echo $installed_version
+# Get the running version of tailscale
+running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
+echo running_version
+# Compare the versions using 'sort' command
+# '-V' flag performs a version sort (e.g., 1.2 < 1.11)
+if [[ "$(echo -e "$installed_version\n$running_version" | sort -V | head -n1)" == "$installed_version" ]]; then
+    echo "Running version is older than installed version. Restarting tailscaled..."
+    sudo systemctl restart tailscaled
+else
+    echo "Running version is up to date."
+fi
