@@ -4,7 +4,16 @@ echo "#To use this run it with
 curl -sSL https://git.aevl.net/tek/umupdate/raw/branch/main/friendica-update | bash
 "
 sleep 3
+#!/bin/bash
+cd /var/www/html/urbanmind.net
 bin/console maintenance 1 "We will be right back!"
+# Specify the location you want to set
+location_path="/var/www/html/friendica"
+
+# Check if the location exists
+if [ -d "$location_path" ]; then
+    echo "Location exists. Changing directory and running Git clone..."
+    cd "$location_path"
 cp -r /var/www/html/friendica /var/www/html/friendica_backup
 cd /var/www/html/friendica
 git fetch
@@ -15,6 +24,15 @@ cd /var/www/html/friendica/addon
 git fetch
 git checkout stable
 git pull
+
+else
+echo "Location does not exist."
+    # Replace "repository_url" with the actual URL of the Git repository you want to clone
+    git clone  git clone https://github.com/friendica/friendica.git -b stable .
+    echo "Git clone completed."
+
+fi
 sudo chown -R www-data:www-data /var/www/html/friendica
 ./bin/console dbstructure update && ./bin/console postupdate
 bin/console maintenance 0
+echo "Finished!"
