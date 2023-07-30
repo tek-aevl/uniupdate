@@ -193,7 +193,7 @@ if [[ $running_kernel != $installed_kernel ]]; then
   echo "pick $USER@$HOSTNAME ($HOST_IP)" &&  uname -a
   read -p "The running kernel ($running_kernel) differs from the installed kernel ($installed_kernel). Do you want to reboot? (y/N): " choice
   if [[ $choice == [Yy] ]]; then
-    echo -e "${RED}Rebooting...{NC}"
+    echo -e "${RED}Rebooting...${NC}"
        echo -e "L8r $USER@$HOSTNAME ($HOST_IP)"
     # Uncomment the following line to perform the reboot
     sleep 3 
@@ -216,7 +216,7 @@ echo -e "${RED} The system has been running for longer than three days. ${NC}"
 echo -e "${YELLOW} System uptime: $days days, $hours hours, $minutes minutes ${NC}"
     read -p "Would you like to reboot now? (Y/n): " choice
     if [[ $choice != [Nn] ]]; then
-      echo -e "${RED} Rebooting... $USER@$HOSTNAME ($HOST_IP) ${NC}"
+      echo -e "${RED} Rebooting... $USER @ $HOSTNAME ($HOST_IP) ${NC}"
       # Uncomment the following line to perform the reboot
           sleep 2
           sudo reboot
