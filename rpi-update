@@ -171,5 +171,5 @@ echo $USER "@" $HOSTNAME
 neofetch
 inxi
 uname -a
-echo -e "Current running kernel ($running_kernel) and the installed kernel ($installed_kernel)."
+echo -e "Current Running kernel ($running_kernel) ; Current Installed kernel ($installed_kernel)."
 echo -e "${GREEN}fin ;p  ;-p ${NC}";
