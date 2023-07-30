@@ -253,6 +253,6 @@ echo -e "${NC}"
 neofetch
 inxi
 uname -a
-echo -e "Current running kernel ($running_kernel) and the installed kernel ($installed_kernel)."
+echo -e "Current Running kernel ($running_kernel) ; Current Installed kernel ($installed_kernel)."
 echo -e "${GREEN} Byah.!. $USER@$HOSTNAME ($HOST_IP) ${NC}"
 sleep 6
