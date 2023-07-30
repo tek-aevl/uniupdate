@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "## To use this in cli use"
+echo "#v.001# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -171,4 +171,5 @@ echo $USER "@" $HOSTNAME
 neofetch
 inxi
 uname -a
+echo -e "Current running kernel ($running_kernel) and the installed kernel ($installed_kernel)."
 echo -e "${GREEN}fin ;p  ;-p ${NC}";
