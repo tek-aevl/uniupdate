@@ -80,11 +80,25 @@ else
 fi
 
 echo -e "${GREEN}Pihole Updates!${NC}"
-pihole arpflush
-pihole restartdns
-pihole -g
-pihole restartdns
-pihole -up
+#!/bin/bash
+
+if dpkg -s pihole &> /dev/null; then
+    # Pi-hole is installed, run the commands
+    pihole arpflush
+    pihole restartdns
+    pihole -g
+    pihole restartdns
+    pihole -up
+else
+    # Pi-hole is not installed, install it using curl
+    curl -sSL https://install.pi-hole.net | bash
+    pihole arpflush
+    pihole restartdns
+    pihole -g
+    pihole restartdns
+    pihole -up
+fi
+
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
 
 echo $USER "@" $HOSTNAME "speedtest"
