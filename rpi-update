@@ -42,6 +42,17 @@ days=$((time_difference / 86400))
 hours=$(( (time_difference % 86400) / 3600 ))
 minutes=$(( (time_difference % 3600) / 60 ))
 
+echo -e "${GREEN}Pihole Updates!${NC}"
+
+if dpkg -s pihole &> /dev/null; then
+    # Pi-hole is installed, run the commands
+    pihole arpflush
+    pihole restartdns
+    pihole -g
+    pihole restartdns
+    pihole -up
+
+
 echo $USER "@" $HOSTNAME
  echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
@@ -79,16 +90,6 @@ else
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 fi
 
-echo -e "${GREEN}Pihole Updates!${NC}"
-#!/bin/bash
-
-if dpkg -s pihole &> /dev/null; then
-    # Pi-hole is installed, run the commands
-    pihole arpflush
-    pihole restartdns
-    pihole -g
-    pihole restartdns
-    pihole -up
 else
     # Pi-hole is not installed, install it using curl
     curl -sSL https://install.pi-hole.net | bash
@@ -100,7 +101,6 @@ else
 fi
 
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
-
 echo $USER "@" $HOSTNAME "speedtest"
 speedtest --secure
 echo who -a && last -n 6
