@@ -19,7 +19,7 @@ WHITE='\033[0;37m'        # White color
 NC='\033[0m'           # No color
 echo "Hello "$USER" I am "$HOSTNAME" let's begin!"
 echo "Kernel linux-zen version check"
-uname -a | lolcat
+uname -a
 
 echo -e "This ${RED}text${NC} is ${RED}Red.${NC}"
 echo -e "This ${YELLOW}text${NC} is ${YELLOW}Yellow.${NC}"
