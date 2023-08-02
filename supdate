@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.46# To use this in cli use"
+echo "#v.48# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -55,7 +55,7 @@ sleep 2
 echo "Retrieving custom_ip_list"
 # custom list 
 #custom_ip_list="0.0.0.0"$'\n'"0.0.0.0"
-custom_ip_list="$'\n'"
+custom_ip_list=""
 echo "#custom_ip_list  done..."
 sleep 2
 echo "combine the list"
