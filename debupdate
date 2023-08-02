@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.16## To use this in cli use"
+echo "#v0.17## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -256,3 +256,4 @@ uname -a
 echo -e "Current Running kernel ($running_kernel) ; Current Installed kernel ($installed_kernel)."
 echo -e "${GREEN} Byah.!. $USER@$HOSTNAME ($HOST_IP) ${NC}"
 sleep 6
+exit;
