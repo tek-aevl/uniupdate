@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.11## To use this in cli use"
+echo "#v0.16## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -58,8 +58,8 @@ sudo  apt autoremove
 echo -e "${NC}"
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
-  # curl command is not found, install it
-  echo "Installing curl..."
+  # bc command is not found, install it
+  echo "Installing bc..."
   if command -v apt &> /dev/null; then
     sudo  apt update
     sudo  apt install -y bc
