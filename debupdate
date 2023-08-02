@@ -52,17 +52,17 @@ sleep 1
 
 echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Upgrade and Update the system
-sudo -A apt update
-sudo -A apt upgrade -y
-sudo -A apt autoremove
+sudo  apt update
+sudo  apt upgrade -y
+sudo  apt autoremove
 echo -e "${NC}"
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
   # curl command is not found, install it
   echo "Installing curl..."
   if command -v apt &> /dev/null; then
-    sudo -A apt update
-    sudo -A apt install -y bc
+    sudo  apt update
+    sudo  apt install -y bc
   elif command -v pacman &> /dev/null; then
     sudo pacman -Sy bc
   else
@@ -76,8 +76,8 @@ if ! command -v curl &> /dev/null; then
   # curl command is not found, install it
   echo "Installing curl..."
   if command -v apt &> /dev/null; then
-    sudo apt -A update
-    sudo apt -A install -y curl
+    sudo apt update
+    sudo apt install -y curl
   elif command -v pacman &> /dev/null; then
     sudo pacman -Sy curl
   else
