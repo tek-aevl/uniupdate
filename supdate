@@ -46,7 +46,7 @@ sleep 2
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
-bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
+bridge_clients=$(ip neigh show dev virbr0 | awk '{print $1}') && echo $bridge_clients
 echo "$bridge_clients done..."
 sleep 2
 
