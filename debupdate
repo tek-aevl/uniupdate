@@ -53,17 +53,17 @@ sleep 1
 
 echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Upgrade and Update the system
-sudo  apt update
-sudo  apt upgrade -y
-sudo  apt autoremove
+sudo -S apt update
+sudo -S apt upgrade -y
+sudo -S apt autoremove
 echo -e "${NC}"
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
   # bc command is not found, install it
   echo "Installing bc..."
   if command -v apt &> /dev/null; then
-    sudo  apt update
-    sudo  apt install -y bc
+    sudo apt update
+    sudo apt install -y bc
   elif command -v pacman &> /dev/null; then
     sudo pacman -Sy bc
   else
