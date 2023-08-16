@@ -40,30 +40,34 @@ function check_pihole {
 }
 echo "done.."
 
-echo "Retrieving ARP table"
+#echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
-arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
-echo "$arp_ip_list done..."
+#arp_ip_list=$(arp -a | awk '{print $2}' | sed 's/[()]//g')
+#echo "$arp_ip_list done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
-bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
+#bridge_clients=$(brctl showmacs virbr0 | awk '{if (NR > 1) print $2}')
+bridge_clients=$(ip neigh show dev virbr0 | awk '{print $1}') && echo $bridge_clients
 echo "$bridge_clients done..."
 
 # Retrieve Tailscale client IP addresses from 'tailscale status' command
 #tailscale_ip_list=$(tailscale status | grep -oE '10\.[0-9]+\.[0-9]+\.[0-9]+')
 
 echo "Retrieving custom_ip_list"
-# custom list 
+# custom list put the next line in a new file called custom_ip_list
 #custom_ip_list="0.0.0.0"$'\n'"0.0.0.0"
-custom_ip_list=" "
+#old#cat ~/custom_ip_list
+custom_ip_list=$(grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' ~/custom_ip_list)
+echo "#custom_ip_list  done..."
+sleep 2
 echo "done..."
 
 echo "combine the list"
 # Combine the IP lists
-ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
-
-echo "done..."
+#withARP#ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$arp_ip_list"$'\n'"$tailscale_ip_list"
+ip_list="$bridge_clients"$'\n'"$custom_ip_list"$'\n'"$tailscale_ip_list"
+echo "$ip_list  done..."
 
 echo "Working this out"
 # Iterate over each IP address and perform SSH connection
