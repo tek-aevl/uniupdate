@@ -151,6 +151,7 @@ minutes=$(( (time_difference % 3600) / 60 ))
 # Check if the system has been running for longer than three days
 if [[ $time_difference -ge $((3 * 24 * 3600)) ]]; then
   echo -e "${RED} WARNING! ${YELLOW}The system has been running for longer than three days.${NC}"
+  uptime
   echo -e "${RED}System uptime: $days days, $hours hours, $minutes minutes "
 if [[ $running_kernel != $installed_kernel ]]; then
     read -p "The running kernel ($running_kernel) differs from the installed kernel ($installed_kernel). Do you want to reboot? (Y/n): " choice
