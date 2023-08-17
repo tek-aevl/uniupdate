@@ -84,6 +84,6 @@ for ip in $ip_list; do
       ssh -yt $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)|bash"
     else
       echo "Running Debian Based Updates on $ip "
-      ssh -yt $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
+      ssh -t $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
