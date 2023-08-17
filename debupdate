@@ -1,6 +1,6 @@
 #!/bin/bash
 reset
-echo "#v0.22## To use this in cli use"
+echo "#v0.23## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -54,9 +54,9 @@ sleep 1
 
 echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Upgrade and Update the system
-sudo -S apt update
-sudo -S apt upgrade -y
-sudo -S apt autoremove
+sudo  apt update
+sudo  apt upgrade -y
+sudo  apt autoremove
 echo -e "${NC}"
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
