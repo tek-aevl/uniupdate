@@ -1,14 +1,15 @@
 #!/bin/bash
-echo "#v.07# To use this in cli use"
+echo "#v.08# Tailscale updated checker, use this in cli/tui to use"
 echo "sudo nano /bin/tailscalechk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/tailscalechk)
-echo 'bye';";
+echo 'bye';
+"
 echo "#To use run"
 echo "bash tailscalechk"
 sleep 2
-
+echo "This was made for ArchlLinux"
 # Get the installed version of tailscale
 installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
 echo $installed_version
