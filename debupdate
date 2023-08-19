@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.37## To use this in cli use"
+echo "#v0.39## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -165,25 +165,27 @@ echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
 echo -e "${YELLOW}Sudo password is required.${NC}"
-sudo apt install ssh-askpass-gnome
-sudo who -a
+
 else
     echo "Sudo password is not required."
 fi
+sudo apt install ssh-askpass-gnome
+sudo who -a
 
 # Upgrade and Update the system
 echo -e "${GREEN}Running apt update..."
 sudo apt update
 echo -e "${NC}"
 
-echo -e "${BLUE}Running apt upgrade..${NC}."
+echo -e "${BLUE}Running apt upgrade..."
 sudo apt upgrade -y
+echo -e "${NC}"
 
 echo -e "${RED}Running apt autoremove..."
 sudo apt autoremove
 echo -e "${NC}"
-echo -e " ${YELLOW} Script completed."
-echo -e " ${NC} "
+
+echo -e " ${YELLOW} Script completed.${NC} "
 
 # Get the running kernel version
 version=$(uname -r)
