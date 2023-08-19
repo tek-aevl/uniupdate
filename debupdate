@@ -52,10 +52,30 @@ who -a
 sleep 1
 
 echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
+#!/bin/bash
+
+echo "Starting update script..."
+
+# Check if sudo password is needed
+sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
+if [ $? -eq 0 ]; then
+    echo "Sudo password is required."
+else
+    echo "Sudo password is not required."
+fi
+
 # Upgrade and Update the system
-sudo  apt update
-sudo  apt upgrade -y
-sudo  apt autoremove
+echo "Running apt update..."
+sudo apt update
+
+echo "Running apt upgrade..."
+sudo apt upgrade -y
+
+echo "Running apt autoremove..."
+sudo apt autoremove
+
+echo "Script completed."
+
 echo -e "${NC}"
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
