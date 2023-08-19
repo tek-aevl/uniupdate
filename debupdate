@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.35## To use this in cli use"
+echo "#v0.35.1b## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -9,7 +9,6 @@ echo 'bye'
 bash update
 "
 sleep 4
-sudo apt install ssh-askpass-gnome
 
 ###export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
@@ -59,7 +58,8 @@ echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Check if sudo password is needed
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
-echo "${YELLOW}Sudo password is required."
+echo "${YELLOW}Sudo password is required.${NC}"
+sudo apt install ssh-askpass-gnome
 sudo who -a
 else
     echo "Sudo password is not required."
