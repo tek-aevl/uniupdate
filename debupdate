@@ -67,7 +67,7 @@ fi
 # Upgrade and Update the system
 echo "Running apt update..."
 sudo apt update
-
+ 
 echo "Running apt upgrade..."
 sudo apt upgrade -y
 
