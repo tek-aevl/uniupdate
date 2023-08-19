@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.39## To use this in cli use"
+echo "#v0.42## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -277,6 +277,7 @@ echo -e "${YELLOW}speedtest $HOST_IP${NC}"
 echo -e "${BLUE}"
 speedtest --secure
 echo -e "${NC}"
+clear
 neofetch
 inxi
 uname -a
