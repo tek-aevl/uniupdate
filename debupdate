@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.24## To use this in cli use"
+echo "#v0.28## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -9,6 +9,8 @@ echo 'bye'
 bash update
 "
 sleep 4
+export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
+
 # Set the colors
 RED='\033[0;31m'       # Red color
 LIGHT_RED='\033[0;91m'    # Light red color
