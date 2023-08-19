@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.35.1b## To use this in cli use"
+echo "#v0.35.2b## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -53,30 +53,6 @@ sleep 1
 echo ":~${HOST_IP} who -a"
 who -a
 sleep 3
-
-echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
-# Check if sudo password is needed
-sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
-if [ $? -eq 0 ]; then
-echo "${YELLOW}Sudo password is required.${NC}"
-sudo apt install ssh-askpass-gnome
-sudo who -a
-else
-    echo "Sudo password is not required."
-fi
-
-# Upgrade and Update the system
-echo "Running apt update..."
-sudo apt update
- 
-echo "Running apt upgrade..."
-sudo apt upgrade -y
-
-echo "${RED}Running apt autoremove..."
-sudo apt autoremove
-
-echo -e " ${YELLOW} Script completed."
-echo -e " ${NC} "
 
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
@@ -183,6 +159,31 @@ minutes=$(echo "$uptime_seconds % 3600 / 60" | bc)
 
 echo -e "${YELLOW} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
 sleep 4
+
+echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
+# Check if sudo password is needed
+sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
+if [ $? -eq 0 ]; then
+echo "${YELLOW}Sudo password is required.${NC}"
+sudo apt install ssh-askpass-gnome
+sudo who -a
+else
+    echo "Sudo password is not required."
+fi
+
+# Upgrade and Update the system
+echo "Running apt update..."
+sudo apt update
+ 
+echo "Running apt upgrade..."
+sudo apt upgrade -y
+
+echo "${RED}Running apt autoremove..."
+sudo apt autoremove
+
+echo -e " ${YELLOW} Script completed."
+echo -e " ${NC} "
+
 # Get the running kernel version
 version=$(uname -r)
 echo "Running kernel $version"
