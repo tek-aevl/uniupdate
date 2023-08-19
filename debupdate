@@ -10,7 +10,7 @@ bash update
 "
 sleep 4
 sudo apt install ssh-askpass-gnome
-export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
+#export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
 # Set the colors
 RED='\033[0;31m'       # Red color
