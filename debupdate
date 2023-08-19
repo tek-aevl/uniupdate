@@ -165,12 +165,9 @@ echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
 echo -e "${YELLOW}Sudo password is required.${NC}"
-
 else
     echo "Sudo password is not required."
 fi
-sudo apt install ssh-askpass-gnome
-sudo who -a
 
 # Upgrade and Update the system
 echo -e "${GREEN}Running apt update..."
@@ -273,6 +270,9 @@ sleep 3
     fi
   fi
 fi
+sudo apt install ssh-askpass-gnome
+sudo who -a
+
 echo -e "${YELLOW}speedtest $HOST_IP${NC}"
 echo -e "${BLUE}"
 speedtest --secure
