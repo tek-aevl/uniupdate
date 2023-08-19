@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.33## To use this in cli use"
+echo "#v0.35## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -76,7 +76,7 @@ echo "${RED}Running apt autoremove..."
 sudo apt autoremove
 
 echo -e " ${YELLOW} Script completed."
-echo -e " ${NC}${NC}${NC}  "
+echo -e " ${NC} "
 
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
