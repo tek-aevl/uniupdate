@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.35.2b## To use this in cli use"
+echo "#v0.37## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -164,7 +164,7 @@ echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Check if sudo password is needed
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
-echo "${YELLOW}Sudo password is required.${NC}"
+echo -e "${YELLOW}Sudo password is required.${NC}"
 sudo apt install ssh-askpass-gnome
 sudo who -a
 else
@@ -172,15 +172,16 @@ else
 fi
 
 # Upgrade and Update the system
-echo "Running apt update..."
+echo -e "${GREEN}Running apt update..."
 sudo apt update
- 
-echo "Running apt upgrade..."
+echo -e "${NC}"
+
+echo -e "${BLUE}Running apt upgrade..${NC}."
 sudo apt upgrade -y
 
-echo "${RED}Running apt autoremove..."
+echo -e "${RED}Running apt autoremove..."
 sudo apt autoremove
-
+echo -e "${NC}"
 echo -e " ${YELLOW} Script completed."
 echo -e " ${NC} "
 
