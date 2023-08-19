@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.28## To use this in cli use"
+echo "#v0.29## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -9,6 +9,7 @@ echo 'bye'
 bash update
 "
 sleep 4
+sudo apt install ssh-askpass-gnome
 export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
 # Set the colors
