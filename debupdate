@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.43## To use this in cli use"
+echo "#v0.44## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -167,7 +167,7 @@ if [ $? -eq 0 ]; then
 echo -e "${YELLOW}Sudo password is required.${NC}"
 sudo -A who -a;
 else
-    echo "${GREEN}You can Sudo.${NC}"
+    echo -e "${GREEN}You can Sudo.${NC}"
 fi
 
 # Upgrade and Update the system
