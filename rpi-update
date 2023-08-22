@@ -1,6 +1,6 @@
 #!/bin/bash
 reset
-echo "#v.020# To use this in cli use"
+echo "#v.021# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -183,7 +183,7 @@ else
   fi
 fi
 
-echo $USER "@" $HOSTNAME
+echo -e $USER "@" $HOSTNAME
 neofetch
 inxi
 uname -a
