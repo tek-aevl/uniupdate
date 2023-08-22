@@ -1,6 +1,6 @@
 #!/bin/bash
 reset
-echo "#v.021# To use this in cli use"
+echo "#v.022# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -175,7 +175,7 @@ else
   read -p "Do you want to reboot? (y/N): " choice
   if [[ $choice == [Yy] ]]; then
     echo -e "${RED}Rebooting...${NC}"
-    echo $USER "@" $HOSTNAME
+    echo '$USER "@" $HOSTNAME'
     # Uncomment the following line to perform the reboot
      sudo reboot
   else
@@ -183,7 +183,7 @@ else
   fi
 fi
 
-echo -e $USER "@" $HOSTNAME
+echo -e '$USER "@" $HOSTNAME'
 neofetch
 inxi
 uname -a
