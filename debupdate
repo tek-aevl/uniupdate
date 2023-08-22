@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.44## To use this in cli use"
+echo "#v0.45## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -164,10 +164,10 @@ echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
 # Check if sudo password is needed
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
-echo -e "${YELLOW}Sudo password is required.${NC}"
-sudo -A who -a;
+ echo -e "${GREEN}You can Sudo.${NC}"
 else
-    echo -e "${GREEN}You can Sudo.${NC}"
+   echo -e "${YELLOW}Sudo password is required.${NC}"
+sudo -A who -a;
 fi
 
 # Upgrade and Update the system
