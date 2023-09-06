@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.52## To use this in cli use"
+echo "#v0.52.1## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -54,37 +54,22 @@ echo ":~${HOST_IP} who -a"
 who -a
 sleep 3
 
-# Check if apt-utils command is installed
-#if ! command -v apt-utils &> /dev/null; then
-  # apt-utils command is not found, install it
-#  echo "Installing apt-utils ..."
-#  if command -v apt &> /dev/null; then
-#    sudo apt update
- #   sudo apt install -y apt-utils 
- # elif command -v pacman &> /dev/null; then
- #   sudo pacman -Sy apt-utils 
- # else
- #   echo "Unable to install apt-utils . Please install it manually."
-# fi
-#fi
-#echo -e "${GREEN}apt-utils Installed${NC}"
-
 echo -e "${YELLOW} Can you ${RED}sudo${NC}?"
 
-# Check if curl command is installed
-if ! command -v curl &> /dev/null; then
-  # curl command is not found, install it
-  echo "Installing curl..."
+# Check if apt-utils command is installed
+if ! command -v apt-utils &> /dev/null; then
+  # apt-utils command is not found, install it
+  echo "Installing apt-utils..."
   if command -v apt &> /dev/null; then
     sudo apt update
-    sudo apt install -y curl
+    sudo apt install -y apt-utils
   elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy curl
+    sudo pacman -Sy apt-utils
   else
-    echo "Unable to install curl. Please install it manually."
+    echo "Unable to install apt-utils. Please install it manually."
  fi
 fi
-echo -e "${GREEN}curl Installed${NC}"
+echo -e "${GREEN}apt-utils Installed${NC}"
 
 # Check if dialog command is installed
 if ! command -v dialog &> /dev/null; then
@@ -100,21 +85,6 @@ if ! command -v dialog &> /dev/null; then
  fi
 fi
 echo -e "${GREEN}dialog Installed${NC}"
-
-# Check if apt-utils command is installed
-if ! command -v apt-utils &> /dev/null; then
-  # apt-utils command is not found, install it
-  echo "Installing apt-utils"
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y apt-utils 
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy apt-utils 
-  else
-    echo "Unable to install apt-utils . Please install it manually."
- fi
-fi
-echo -e "${GREEN}apt-utils Installed${NC}"
 
 # Check if bc command is installed
 if ! command -v bc &> /dev/null; then
