@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.49## To use this in cli use"
+echo "#v0.50## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -53,6 +53,21 @@ sleep 1
 echo ":~${HOST_IP} who -a"
 who -a
 sleep 3
+
+# Check if apt-utils command is installed
+if ! command -v apt-utils &> /dev/null; then
+  # apt-utils command is not found, install it
+  echo "Installing apt-utils ..."
+  if command -v apt &> /dev/null; then
+    sudo apt update
+    sudo apt install -y apt-utils 
+  elif command -v pacman &> /dev/null; then
+    sudo pacman -Sy apt-utils 
+  else
+    echo "Unable to install apt-utils . Please install it manually."
+ fi
+fi
+echo -e "${GREEN}apt-utils Installed${NC}"
 
 # Check if apt-utils command is installed
 if ! command -v apt-utils &> /dev/null; then
