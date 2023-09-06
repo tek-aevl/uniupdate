@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.59# To use this in cli use"
+echo "#V.61# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -87,5 +87,5 @@ else
         echo -e "${GREEN}=&<6${NC}"
         sleep 5
 fi
-
+echo "finisher"
 sleep 6
