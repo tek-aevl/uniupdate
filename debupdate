@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.52.1## To use this in cli use"
+echo "#v0.52.2## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -55,21 +55,16 @@ who -a
 sleep 3
 
 echo -e "${YELLOW} Can you ${RED}sudo${NC}?"
-
-# Check if apt-utils command is installed
-if ! command -v apt-utils &> /dev/null; then
-  # apt-utils command is not found, install it
-  echo "Installing apt-utils..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y apt-utils
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy apt-utils
-  else
-    echo "Unable to install apt-utils. Please install it manually."
- fi
+echo -e "${RED} Password $USER@$HOSTNAME ($HOST_IP)  "
+sudo sleep 1
+# Check if sudo password is needed
+sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
+if [ $? -eq 0 ]; then
+ echo -e "${GREEN}You can Sudo.${NC}"
+else
+   echo -e "${YELLOW}Sudo password is required.${NC}"
+sudo -A who -a;
 fi
-echo -e "${GREEN}apt-utils Installed${NC}"
 
 # Check if dialog command is installed
 if ! command -v dialog &> /dev/null; then
@@ -176,16 +171,6 @@ minutes=$(echo "$uptime_seconds % 3600 / 60" | bc)
 
 echo -e "${YELLOW} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
 sleep 4
-
-echo -e "${RED} Updating $USER@$HOSTNAME ($HOST_IP)  "
-# Check if sudo password is needed
-sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
-if [ $? -eq 0 ]; then
- echo -e "${GREEN}You can Sudo.${NC}"
-else
-   echo -e "${YELLOW}Sudo password is required.${NC}"
-sudo -A who -a;
-fi
 
 # Upgrade and Update the system
 echo -e "${GREEN}Running apt update..."
