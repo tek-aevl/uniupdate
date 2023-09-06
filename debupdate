@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.47## To use this in cli use"
+echo "#v0.48## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -179,7 +179,7 @@ echo -e "${MAGENTA}Running apt upgrade..."
 sudo apt upgrade -y
 echo -e "${NC}"
 
-echo -e "${RED}Running apt autoremove..."
+echo -e "${CYAN}Running apt autoremove..."
 sudo apt autoremove
 echo -e "${NC}"
 
