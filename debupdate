@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.52.2## To use this in cli use"
+echo "#v0.52.3## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -273,11 +273,8 @@ sleep 3
     fi
   fi
 fi
-sudo apt install ssh-askpass-gnome
-sudo who -a
-
 echo -e "${YELLOW}speedtest $HOST_IP${NC}"
-echo -e "${BLUE}"
+echo -e "${CYAN}"
 speedtest --secure
 echo -e "${NC}"
 clear
