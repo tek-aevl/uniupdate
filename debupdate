@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.52.3## To use this in cli use"
+echo "#v0.54## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -56,14 +56,15 @@ sleep 3
 
 echo -e "${YELLOW} Can you ${RED}sudo${NC}?"
 echo -e "${RED} Password $USER@$HOSTNAME ($HOST_IP)  "
-sudo sleep 1
 # Check if sudo password is needed
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
- echo -e "${GREEN}You can Sudo.${NC}"
+ echo -e "${GREEN}You can Sudo. Right? ${NC}"
+sudo sleep 1
 else
    echo -e "${YELLOW}Sudo password is required.${NC}"
-sudo -A who -a;
+sudo -A who -a
+sleep 2
 fi
 
 # Check if dialog command is installed
