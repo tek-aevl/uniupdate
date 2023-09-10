@@ -67,80 +67,32 @@ sudo -A who -a
 sleep 2
 fi
 
-# Check if dialog command is installed
-if ! command -v dialog &> /dev/null; then
-  # bc command is not found, install it
-  echo "Installing dialog..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y dialog
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy dialog
-  else
-    echo "Unable to install dialog. Please install it manually."
- fi
-fi
-echo -e "${GREEN}dialog Installed${NC}"
+# Define a list of programs to check
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest")
 
-# Check if bc command is installed
-if ! command -v bc &> /dev/null; then
-  # bc command is not found, install it
-  echo "Installing bc..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y bc
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy bc
-  else
-    echo "Unable to install bc. Please install it manually."
- fi
-fi
-echo -e "${GREEN}bc Installed${NC}"
+# Define the corresponding package names for each program
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli")
 
-# Check if inxi command is installed
-if ! command -v inxi &> /dev/null; then
-  # inxi command is not found, install it
-  echo "Installing inxi..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y inxi
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy inxi
-  else
-    echo "Unable to install inxi. Please install it manually."
-  fi
-fi
-echo -e "${GREEN}inxi Installed${NC}"
-
-# Check if neofetch command is installed
-if ! command -v neofetch &> /dev/null; then
-  # inxi command is not found, install it
-  echo "Installing neofetch..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y neofetch
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy neofetch
-  else
-    echo "Unable to install inxi. Please install it manually."
- fi
-fi
-echo -e "${GREEN}neofetch Installed${NC}"
-
-# Check if speedtest command is installed
-if ! command -v speedtest &> /dev/null; then
-  # speedtest command is not found, install it
-  echo "Installing speedtest..."
-  if command -v apt &> /dev/null; then
-    sudo apt update
-    sudo apt install -y speedtest-cli
-  elif command -v pacman &> /dev/null; then
-    sudo pacman -Sy speedtest-cli
-  else
-    echo "Unable to install speedtest-cli. Please install it manually."
-  fi
-fi
-echo -e "${GREEN}speedtest Installed${NC}"
+# Loop through the programs
+for ((i=0; i<${#programs[@]}; i++)); do
+    program=${programs[i]}
+    package_name=${package_names[i]}
+    
+    # Check if the program is installed
+    if ! command -v $program &> /dev/null; then
+        # Program is not found, install it
+        echo "Installing $package_name..."
+        if command -v apt &> /dev/null; then
+            sudo apt update
+            sudo apt install -y $package_name
+        elif command -v pacman &> /dev/null; then
+            sudo pacman -Sy $package_name
+        else
+            echo "Unable to install $package_name. Please install it manually."
+        fi
+    fi
+    echo -e "${GREEN}$package_name Installed${NC}"
+done
 
 echo "get-time $USER@$HOSTNAME ($HOST_IP)"
 # Get the current timestamp
