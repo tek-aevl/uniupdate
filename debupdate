@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.60## To use this in cli use"
+echo "#v0.61## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -91,7 +91,7 @@ for ((i=0; i<${#programs[@]}; i++)); do
             echo "Unable to install $package_name. Please install it manually."
         fi
     fi
-    echo -e "${GREEN}$package_name Installed${NC}"
+    echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
 done
 
 echo "get-time $USER@$HOSTNAME ($HOST_IP)"
