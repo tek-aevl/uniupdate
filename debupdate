@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.61## To use this in cli use"
+echo "#v0.62## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -68,10 +68,10 @@ sleep 2
 fi
 
 # Define a list of programs to check
-programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop")
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "crontab")
 
 # Define the corresponding package names for each program
-package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop")
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "crontab")
 
 # Loop through the programs
 for ((i=0; i<${#programs[@]}; i++)); do
