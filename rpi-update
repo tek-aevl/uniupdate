@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.028# To use this in cli use"
+echo "#v.029# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -87,7 +87,7 @@ fi
 echo $USER "@" $HOSTNAME
  echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
-read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
+read -p -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
 if [[$force_log_reset == "yes" ]]; then
  echo -e "${RED}The system has been running for longer than three days.${NC}"
  echo -e "${YELLOW}Flushing Logs${NC}"
@@ -117,14 +117,7 @@ sleep 8
 else
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
-else
-    # Pi-hole is not installed, install it using curl
-    curl -sSL https://install.pi-hole.net | bash
-    pihole arpflush
-    pihole restartdns
-    pihole -g
-    pihole restartdns
-    pihole -up
+  sleep 4
 fi
 
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
