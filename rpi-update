@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.035.1# To use this in cli use"
+echo "#v.036# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -90,13 +90,13 @@ echo $USER "@" $HOSTNAME
 echo -e "${RED}Reset logs anyway?${NC}"
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
 if [[ $force_log_reset != [no] ]]; then
- echo -e "${RED}The system has been running for longer than three days.${NC}"
+ echo -e "${RED}Flush was selected.${NC}"
  echo -e "${YELLOW}Flushing Logs${NC}"
  echo "# output current pihole db size"
  sudo du -h /etc/pihole/pihole-FTL.db -h
  echo "# current old db size"
  sudo du -h /etc/pihole/pihole-FTL-old.db -h
- echo "# flush pihole logs"
+ echo "#pihole flush"
  pihole flush
  echo "# Output pihole db size"
  sudo du -h /etc/pihole/pihole-FTL.db -h
