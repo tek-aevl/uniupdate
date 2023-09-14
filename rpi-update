@@ -1,6 +1,6 @@
 #!/bin/bash
 reset
-echo "#v.022.1# To use this in cli use"
+echo "#v.024# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -21,10 +21,35 @@ echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
 sleep 4
 
 echo -e "Welcome " $USER "@" $HOSTNAME "${GREEN}"
-sudo apt install inxi speedtest-cli neofetch curl
-sudo apt update 
-sudo apt upgrade -y 
-sudo apt autoremove
+
+# Define a list of programs to check
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron")
+
+# Define the corresponding package names for each program
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron")
+
+# Loop through the programs
+for ((i=0; i<${#programs[@]}; i++)); do
+    program=${programs[i]}
+    package_name=${package_names[i]}
+    
+    # Check if the program is installed
+    if ! command -v $program &> /dev/null; then
+        # Program is not found, install it
+        echo "Installing $package_name..."
+        if command -v apt &> /dev/null; then
+            sudo apt update
+            sudo apt install -y $package_name
+        elif command -v pacman &> /dev/null; then
+            sudo pacman -Sy $package_name
+        else
+            echo "Unable to install $package_name. Please install it manually."
+        fi
+    fi
+    echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
+done
+
+
 echo -e "${NC}"
 # Get the uptime of the system
 uptime=$(uptime -s)
