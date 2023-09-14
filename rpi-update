@@ -1,6 +1,6 @@
 #!/bin/bash
 reset
-echo "#v.024# To use this in cli use"
+echo "#v.025# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -82,6 +82,7 @@ if dpkg -s pihole &> /dev/null; then
 echo $USER "@" $HOSTNAME
  echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
+sleep 2
 # Check if the system has been running for longer than three days
 read -e -i "no" -p "Force log reset? (yes/no): " force_log_reset
 
