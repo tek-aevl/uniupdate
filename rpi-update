@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.029# To use this in cli use"
+echo "#v.030# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -77,6 +77,7 @@ if dpkg -s pihole &> /dev/null; then
     pihole -g
     pihole restartdns
     pihole -up
+fi 
 
 if [[ $days -ge 3 ]]; then
     force_log_reset="yes"
