@@ -77,18 +77,17 @@ if dpkg -s pihole &> /dev/null; then
     pihole -g
     pihole restartdns
     pihole -up
-force_log_reset="no"
+
 if [[ $days -ge 3 ]]; then
     force_log_reset="yes"
+    else
+    force_log_reset="no"
 fi
 
 echo $USER "@" $HOSTNAME
  echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
-sleep 2
-# Check if the system has been running for longer than three days
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
-
 if [[$force_log_reset == "yes" ]]; then
  echo -e "${RED}The system has been running for longer than three days.${NC}"
  echo -e "${YELLOW}Flushing Logs${NC}"
@@ -118,8 +117,6 @@ sleep 8
 else
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
-fi
-
 else
     # Pi-hole is not installed, install it using curl
     curl -sSL https://install.pi-hole.net | bash
