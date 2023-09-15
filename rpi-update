@@ -89,7 +89,7 @@ echo $USER "@" $HOSTNAME
  echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
-if [[ $force_log_reset != [no] ]]; then
+if [[ $force_log_reset == [yes] ]]; then
  echo -e "${RED}Flush was selected.${NC}"
  echo -e "${YELLOW}Flushing Logs${NC}"
  echo "# output current pihole db size"
