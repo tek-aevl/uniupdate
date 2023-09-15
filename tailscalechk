@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.08.1# Tailscale update checker, use this in cli/tui to use"
+echo "#v1# Tailscale update checker, use this in cli/tui to use"
 echo "sudo nano /bin/tailscalechk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -11,10 +11,13 @@ echo "bash tailscalechk"
 sleep 2
 echo "This was made for ArchLinux"
 # Get the installed version of tailscale
-installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
+#installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
+installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}')
+
 echo $installed_version
 # Get the running version of tailscale
-running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
+#running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
+running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}')
 echo $running_version
 # Compare the versions using 'sort' command
 # '-V' flag performs a version sort (e.g., 1.2 < 1.11)
@@ -28,6 +31,8 @@ else
 fi
 echo "Running verion" 
 sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}'
+sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}'
 echo "Installed version"
 sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}'
+sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}'
 echo "tailscalechk complete ;-p"
