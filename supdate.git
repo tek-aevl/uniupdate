@@ -6,9 +6,6 @@ sudo nano /bin/usr/update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/supdate.git)
 echo 'bye'
 ###above###
-#or  maybe, this is a test.
-git clone https://git.aevl.net/tek/umupdate/raw/branch/main/supdate.git
-
 "
 echo "#To use run"
 echo "bash update"
