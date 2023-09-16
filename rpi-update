@@ -92,31 +92,31 @@ echo -e "${RED}Reset logs anyway?${NC}"
 
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
 if [[ $force_log_reset == "yes ]] || [[ $force_log_reset == "y" ]]; then
- echo -e "${RED}Flush was selected.${NC}"
- echo -e "${YELLOW}Flushing Logs${NC}"
- echo "# output current pihole db size"
- sudo du -h /etc/pihole/pihole-FTL.db -h
- echo "# current old db size"
- sudo du -h /etc/pihole/pihole-FTL-old.db -h
- echo "#pihole flush"
- pihole flush
- echo "# Output pihole db size"
- sudo du -h /etc/pihole/pihole-FTL.db -h
- sudo rm /etc/pihole/pihole-FTL-old.db 
-sleep 3
- echo "# Stop pihole FTL service"
- sudo systemctl stop pihole-FTL
- echo "# Delete the FTL database file"
- sudo service pihole-FTL stop
-echo "moving current db to old db"
- sudo mv /etc/pihole/pihole-FTL.db /etc/pihole/pihole-FTL-old.db
- sudo service pihole-FTL start
- echo "# Start pihole FTL service"
- sudo systemctl start pihole-FTL
- echo "# Output reduced pihole db size"
- sudo du -h /etc/pihole/pihole-FTL.db -h
- sudo du -h /etc/pihole/pihole-FTL-old.db -h
-sleep 8
+   echo -e "${RED}Flush was selected.${NC}"
+   echo -e "${YELLOW}Flushing Logs${NC}"
+   echo "# output current pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+   echo "# current old db size"
+        sudo du -h /etc/pihole/pihole-FTL-old.db -h
+   echo "#pihole flush"
+      pihole flush
+   echo "# Output pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+        sudo rm /etc/pihole/pihole-FTL-old.db 
+      sleep 3
+    echo "# Stop pihole FTL service"
+        sudo systemctl stop pihole-FTL
+    echo "# Delete the FTL database file"
+        sudo service pihole-FTL stop
+    echo "moving current db to old db"
+        sudo mv /etc/pihole/pihole-FTL.db /etc/pihole/pihole-FTL-old.db
+        sudo service pihole-FTL start
+    echo "# Start pihole FTL service"
+        sudo systemctl start pihole-FTL
+    echo "# Output reduced pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+        sudo du -h /etc/pihole/pihole-FTL-old.db -h
+    sleep 8
 elif  [[ $force_log_reset == "no" ]] || [[ $force_log_reset == "n" ]]; then
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
@@ -207,7 +207,7 @@ else
     echo -e "${YELLOW}Reboot skipped${NC}."
   fi
 fi
-
+echo $USER "@" $HOSTNAME
 echo -e " $USER @ $HOSTNAME "
 neofetch
 inxi
