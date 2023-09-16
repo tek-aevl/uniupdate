@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.64## To use this in cli use"
+echo "#v0.65## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -186,7 +186,7 @@ else
 echo -e "${GREEN}Running   version >>: $running_kernel ${NC}"
 inxi
 echo -e "${BLUE}Installed version >>: $installed_kernel ${NC}"
-uname-a
+uname -a
 sleep 1 
 echo -e "The running kernel $running_kernel ${GREEN}matches${NC} the installed kernel $installed_kernel. ${YELLOW}No reboot required.${NC}"
   
