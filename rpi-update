@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.036# To use this in cli use"
+echo "#v.037# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -80,16 +80,18 @@ if dpkg -s pihole &> /dev/null; then
 fi 
 
 if [[ $days -ge 3 ]]; then
-    force_log_reset="yes"
+    force_log_reset="[yes]"
     else
-    force_log_reset="no"
+    force_log_reset="[no]"
 fi
 
+
 echo $USER "@" $HOSTNAME
- echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
+
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
-if [[ $force_log_reset == [yes] ]]; then
+if [[ $force_log_reset == "yes ]] || [[ $force_log_reset == "y" ]]; then
  echo -e "${RED}Flush was selected.${NC}"
  echo -e "${YELLOW}Flushing Logs${NC}"
  echo "# output current pihole db size"
@@ -115,11 +117,14 @@ echo "moving current db to old db"
  sudo du -h /etc/pihole/pihole-FTL.db -h
  sudo du -h /etc/pihole/pihole-FTL-old.db -h
 sleep 8
-else
+elif  [[ $force_log_reset == "no" ]] || [[ $force_log_reset == "n" ]]; then
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
   sleep 4
+else
+    echo -e "${YELLOW}Invalid input.${NC}"
 fi
+
 
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
 echo $USER "@" $HOSTNAME "speedtest"
