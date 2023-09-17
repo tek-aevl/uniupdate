@@ -84,8 +84,8 @@ if [[ $days -ge 3 ]]; then
     else
     force_log_reset="no"
 fi
-
-
+echo -e "$force_log_reset"
+sleep 2
 echo $USER "@" $HOSTNAME
 echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
