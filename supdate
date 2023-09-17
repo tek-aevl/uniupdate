@@ -3,7 +3,7 @@ echo "#v.80# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
-bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/supdate.git)
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/supdate)
 echo 'bye'
 ###above###
 "
