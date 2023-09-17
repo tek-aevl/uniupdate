@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+#V0.2
 # Welcome to the Matrix Bash terminal
 # Author: Circuit Static
 
@@ -19,7 +19,7 @@ darkgrey="\033[1;30m"
 # Choose the colors that will be used from the above list
 # space-separated list
 # e.g. `colors=($green $brightgreen $darkgrey $white)`
-colors=($green $brightgreen)
+colors=($green $brightgreen $blue $cyan $brightblue $brightcyan $brightred $white $black $grey $darkgrey $red )
 ### End customization
 
 ### Do not edit below this line
