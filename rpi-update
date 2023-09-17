@@ -80,9 +80,9 @@ if dpkg -s pihole &> /dev/null; then
 fi 
 
 if [[ $days -ge 3 ]]; then
-    force_log_reset="[yes]"
+    force_log_reset="yes"
     else
-    force_log_reset="[no]"
+    force_log_reset="no"
 fi
 
 
