@@ -84,7 +84,7 @@ if [[ $days -ge 3 ]]; then
     else
     force_log_reset="no"
 fi
-echo -e "Automatically selected $force_log_reset"
+echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
 echo $USER "@" $HOSTNAME
 echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
