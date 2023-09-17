@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.45# To use this in cli use"
+echo "#v.46# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -52,13 +52,13 @@ done
 
 echo -e "${NC}"
 # Get the uptime of the system
-uptime=$(uptime -s)
+uptimen=$(uptime -s)
 
 # Get the current timestamp
 current_timestamp=$(date +%s)
 
 # Convert uptime to timestamp
-uptime_timestamp=$(date -d "$uptime" +%s)
+uptime_timestamp=$(date -d "$uptimen" +%s)
 
 # Calculate the time difference in seconds
 time_difference=$((current_timestamp - uptime_timestamp))
@@ -125,12 +125,22 @@ else
     echo -e "${YELLOW}Invalid input.${NC}"
 fi
 
-
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
+
+read -e -i "$nettest" -p "Speedtest? (yes/no): " force_log_reset
+if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
 echo $USER "@" $HOSTNAME "speedtest"
 speedtest --secure
 echo who -a && last -n 6
 sleep 3
+elif  [[ $nettest == "no" ]] || [[ $nettest == "n" ]]; then
+      echo -e "${GREEN} Not running speedtest : System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+  sleep 4
+else
+    echo -e "${YELLOW}Invalid input.${NC}"
+fi
+
+
 # Get the installed kernel version
 installed_kernel=$(uname -r)
 
