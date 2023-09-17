@@ -24,7 +24,7 @@ colors=($green $brightgreen $blue $cyan $brightblue $brightcyan $brightred $whit
 
 ### Do not edit below this line
 spacing=${1:-100} # the likelihood of a character being left in place
-scroll=${2:-0} # 0 for static, positive integer determines scroll speed
+scroll=${2:-1} # 0 for static, positive integer determines scroll speed
 screenlines=$(expr `tput lines` - 1 + $scroll)
 screencols=$(expr `tput cols` / 2 - 1)
 
