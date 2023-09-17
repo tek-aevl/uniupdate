@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.40# To use this in cli use"
+echo "#v.45# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -84,7 +84,7 @@ if [[ $days -ge 3 ]]; then
     else
     force_log_reset="no"
 fi
-echo -e "$force_log_reset"
+echo -e "Automatically selected $force_log_reset"
 sleep 2
 echo $USER "@" $HOSTNAME
 echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
