@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.46.1# To use this in cli use"
+echo "#v.46.2# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -128,7 +128,7 @@ else
 fi
 
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
-
+nettest = "no";
 read -e -i "$nettest" -p "Speedtest? (yes/no): " nettest
 if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
 echo $USER "@" $HOSTNAME "speedtest"
