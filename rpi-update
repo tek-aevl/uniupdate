@@ -129,7 +129,7 @@ fi
 
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
 
-read -e -i "$nettest" -p "Speedtest? (yes/no): " force_log_reset
+read -e -i "$nettest" -p "Speedtest? (yes/no): " nettest
 if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
 echo $USER "@" $HOSTNAME "speedtest"
 speedtest --secure
