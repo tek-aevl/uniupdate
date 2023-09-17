@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#v.46# To use this in cli use"
+echo "#v.46.1# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -81,18 +81,20 @@ fi
 
 if [[ $days -ge 3 ]]; then
     force_log_reset="yes"
+    echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
     else
     force_log_reset="no"
+    echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+
 fi
 echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
 echo $USER "@" $HOSTNAME
-echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 echo -e "${RED}Reset logs anyway?${NC}"
 
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
 if [[ $force_log_reset == "yes" ]] || [[ $force_log_reset == "y" ]]; then
-   echo -e "${RED}Flush was selected.${NC}"
+   echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
    echo "# output current pihole db size"
         sudo du -h /etc/pihole/pihole-FTL.db -h
