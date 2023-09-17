@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.61# To use this in cli use"
+echo "#c.62# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
