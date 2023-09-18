@@ -79,21 +79,21 @@ if dpkg -s pihole &> /dev/null; then
     pihole -up
 fi 
 
+echo $USER "@" $HOSTNAME
+
 if [[ $days -ge 3 ]]; then
     force_log_reset="yes"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
     else
     force_log_reset="no"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
-
 fi
 echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
-echo $USER "@" $HOSTNAME
-echo -e "${RED}Reset logs anyway?${NC}"
 
+echo -e "${RED}Reset logs anyway?${NC}"
 read -e -i "$force_log_reset" -p "Force log reset? (yes/no): " force_log_reset
-if [[ $force_log_reset == "yes" ]] || [[ $force_log_reset == "y" ]]; then
+if [[ $force_log_reset != "no" ]] || [[ $force_log_reset != "n" ]]; then
    echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
    echo "# output current pihole db size"
@@ -119,7 +119,7 @@ if [[ $force_log_reset == "yes" ]] || [[ $force_log_reset == "y" ]]; then
         sudo du -h /etc/pihole/pihole-FTL.db -h
         sudo du -h /etc/pihole/pihole-FTL-old.db -h
     sleep 8
-elif  [[ $force_log_reset == "no" ]] || [[ $force_log_reset == "n" ]]; then
+elif  [[ $force_log_reset != "yes" ]] || [[ $force_log_reset != "y" ]]; then
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
   sleep 4
