@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#c.51# To use this in cli use"
+echo "#c.53# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
