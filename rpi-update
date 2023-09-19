@@ -95,6 +95,12 @@ read -p "Force log reset? (y/n): " override
 
 force_log_reset = $override
 
+if [[ -n $override ]]; then
+    force_log_reset=$override
+else
+    echo -e "${YELLOW}No input received. Using default value $force_log_reset .${NC}"
+fi
+
 if [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
    echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
