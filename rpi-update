@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#c.55# To use this in cli use"
+echo "#c.56# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -49,7 +49,6 @@ for ((i=0; i<${#programs[@]}; i++)); do
     echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
 done
 
-
 echo -e "${NC}"
 # Get the uptime of the system
 uptimen=$(uptime -s)
@@ -93,7 +92,8 @@ sleep 2
 
 echo -e "${RED}Reset logs anyway?${NC}"
 read -p "Force log reset? (y/n): " force_log_reset
-if [[ $force_log_reset != "no" ]] || [[ $force_log_reset != "n" ]]; then
+if [[ $forceif [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
+_log_reset != "no" ]] || [[ $force_log_reset != "n" ]]; then
    echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
    echo "# output current pihole db size"
@@ -119,7 +119,7 @@ if [[ $force_log_reset != "no" ]] || [[ $force_log_reset != "n" ]]; then
         sudo du -h /etc/pihole/pihole-FTL.db -h
         sudo du -h /etc/pihole/pihole-FTL-old.db -h
     sleep 8
-elif  [[ $force_log_reset != "yes" ]] || [[ $force_log_reset != "y" ]]; then
+elif [[ $force_log_reset != "yes" && $force_log_reset != "y" ]]; then
   echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
   echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
   sleep 4
