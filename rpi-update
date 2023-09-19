@@ -125,17 +125,20 @@ elif [[ $force_log_reset != "yes" && $force_log_reset != "y" ]]; then
 else
     echo -e "${YELLOW}Invalid input.${NC}"
 fi
-#  read -p "Do you want to reboot? (y/N): " choice
-#  if [[ $choice == [Yy] ]]; then
+
+#####################################################
+#  read -p "Do you want to reboot? (y/N): " choice  # example
+#  if [[ $choice == [Yy] ]]; then                   # 
+#####################################################
 uptime; sleep 3; echo -e "${YELLOW}Resuming!${NC}" 
 nettest = "no";
 read -p "Speedtest? (y/n): $nettest" nettest
-if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
+if [[ $nettest == "yes" ]] && [[ $nettest == "y" ]]; then
 echo $USER "@" $HOSTNAME "speedtest"
 speedtest --secure
 echo who -a && last -n 6
 sleep 3
-elif  [[ $nettest == "no" ]] || [[ $nettest == "n" ]]; then
+elif  [[ $nettest == "no" ]] && [[ $nettest == "n" ]]; then
       echo -e "${GREEN} Not running speedtest : System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
   sleep 4
 else
