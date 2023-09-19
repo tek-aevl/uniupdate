@@ -81,7 +81,7 @@ fi
 echo $USER "@" $HOSTNAME
 
 if [[ $days -ge 3 ]]; then
-    force_log_reset="yes"
+   force_log_reset="yes"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
     else
     force_log_reset="no"
@@ -90,8 +90,11 @@ fi
 echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
 
-echo -e "${RED}Reset logs anyway?${NC}"
-read -p "Force log reset? (y/n): " force_log_reset
+echo -e "${RED}Reset logs anyway? ( $force_log_reset ) ${NC}"
+read -p "Force log reset? (y/n): " override
+
+force_log_reset = $override
+
 if [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
    echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
