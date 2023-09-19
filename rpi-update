@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#c.56# To use this in cli use"
+echo "#c.56.1# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -92,8 +92,7 @@ sleep 2
 
 echo -e "${RED}Reset logs anyway?${NC}"
 read -p "Force log reset? (y/n): " force_log_reset
-if [[ $forceif [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
-_log_reset != "no" ]] || [[ $force_log_reset != "n" ]]; then
+if [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
    echo -e "${RED} $force_log_reset was selected.${NC}"
    echo -e "${YELLOW}Flushing Logs${NC}"
    echo "# output current pihole db size"
