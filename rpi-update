@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "#c.62# To use this in cli use"
+echo "#c.63###TEST-premerge# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -67,19 +67,6 @@ days=$((time_difference / 86400))
 hours=$(( (time_difference % 86400) / 3600 ))
 minutes=$(( (time_difference % 3600) / 60 ))
 
-echo -e "${GREEN}Pihole Updates!${NC}"
-
-if dpkg -s pihole &> /dev/null; then
-    # Pi-hole is installed, run the commands
-    pihole arpflush
-    pihole restartdns
-    pihole -g
-    pihole restartdns
-    pihole -up
-fi 
-
-echo $USER "@" $HOSTNAME
-
 if [[ $days -ge 3 ]]; then
    force_log_reset="yes"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
@@ -87,6 +74,20 @@ if [[ $days -ge 3 ]]; then
     force_log_reset="no"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 fi
+
+if dpkg -s pihole &> /dev/null; then
+
+echo -e "${GREEN}Pihole Updates!${NC}"
+
+    # Pi-hole is installed, run the commands
+    pihole arpflush
+    pihole restartdns
+    pihole -g
+    pihole restartdns
+    pihole -up
+
+echo $USER "@" $HOSTNAME
+
 echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
 
@@ -132,7 +133,7 @@ elif [[ $force_log_reset != "yes" && $force_log_reset != "y" ]]; then
 else
     echo -e "${YELLOW}Invalid input.${NC}"
 fi
-
+fi 
 #####################################################
 #  read -p "Do you want to reboot? (y/N): " choice  # example
 #  if [[ $choice == [Yy] ]]; then                   # 
