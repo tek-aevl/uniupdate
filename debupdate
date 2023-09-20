@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.67.1## To use this in cli use"
+echo "#v0.68## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -228,20 +228,25 @@ sleep 3
   fi
 fi
 
-read -e -i "$nettest" -p "Speedtest? (yes/no): " nettest
-if [[ $nettest == "yes" ]] && [[ $nettest == "y" ]]; then
-echo -e "${YELLOW}"
-echo $USER "@" $HOSTNAME " speedtest"
-echo -e "${CYAN}speedtest $HOST_IP$"
-speedtest --secure
-sleep 3
-elif  [[ $nettest == "no" ]] && [[ $nettest == "n" ]]; then
-      echo -e "${GREEN} Not running speedtest : System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
-  sleep 4
+echo -e "${YELLOW}Speedtest!${NC}" 
+nettest="no"
+read -p "Speedtest? (y/n): $nettest " nettest
+
+if [[ -n $nettest ]]; then
+    if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
+        echo "$USER@$HOSTNAME speedtest"
+        speedtest --secure
+        sleep 3
+    elif [[ $nettest == "no" ]] || [[ $nettest == "n" ]]; then
+        echo -e "${GREEN} Not running speedtest : System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+        sleep 4
+    else
+        echo -e "${YELLOW}Invalid input.${NC}"
+    fi
 else
-    echo -e "${YELLOW}Invalid input.${NC}"
+    echo -e "${YELLOW}No input received. Using default value $nettest.${NC}"
 fi
-echo -e "${NC}"
+
 
 echo $USER "@" $HOSTNAME
 who -a && last -n 6
