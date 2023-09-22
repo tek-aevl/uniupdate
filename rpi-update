@@ -49,21 +49,6 @@ for ((i=0; i<${#programs[@]}; i++)); do
     echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
 done
 
-if ! command -v qemu-guest-agent &> /dev/null; then
-sudo apt install qemu-guest-agent && sudo systemctl enable qemu-guest-agent && sudo systemctl start qemu-guest-agent
-if command -v apt &> /dev/null; then
-            sudo apt update
-            sudo apt install -y qemu-guest-agent
-        elif command -v pacman &> /dev/null; then
-            sudo pacman -Sy qemu-guest-agent
-        else
-            echo "Unable to install, Please install it manually."
-        fi
-    fi
-    echo -e "${GREEN}qemu-guest-agent Installed ${MAGENTA}!${NC}"
-done
-
-
 echo -e "${NC}"
 # Get the uptime of the system
 uptimen=$(uptime -s)
