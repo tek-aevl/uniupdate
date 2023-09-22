@@ -42,6 +42,10 @@ for ((i=0; i<${#programs[@]}; i++)); do
             sudo apt install -y $package_name
         elif command -v pacman &> /dev/null; then
             sudo pacman -Sy $package_name
+        elif command -v dnf &> /dev/null; then  # Add support for Fedora
+            sudo dnf install -y $package_name
+        elif command -v pkg &> /dev/null; then  # Add support for FreeBSD
+            sudo pkg install -y $package_name
         else
             echo "Unable to install $package_name. Please install it manually."
         fi
