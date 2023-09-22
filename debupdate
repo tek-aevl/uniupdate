@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.68## To use this in cli use"
+echo "#v0.72## To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -230,7 +230,7 @@ fi
 
 echo -e "${YELLOW}Speedtest!${NC}" 
 nettest="no"
-read -p "Speedtest? (y/n): $nettest " nettest
+read -p "Speedtest? (y/n): ($nettest) " nettest
 
 if [[ -n $nettest ]]; then
     if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
