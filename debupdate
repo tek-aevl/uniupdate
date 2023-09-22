@@ -87,6 +87,10 @@ for ((i=0; i<${#programs[@]}; i++)); do
             sudo apt install -y $package_name
         elif command -v pacman &> /dev/null; then
             sudo pacman -Sy $package_name
+        elif command -v dnf &> /dev/null; then  # Add support for Fedora
+            sudo dnf install -y $package_name
+        elif command -v pkg &> /dev/null; then  # Add support for FreeBSD
+            sudo pkg install -y $package_name
         else
             echo "Unable to install $package_name. Please install it manually."
         fi
@@ -125,14 +129,106 @@ minutes=$(echo "$uptime_seconds % 3600 / 60" | bc)
 echo -e "${YELLOW} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
 sleep 4
 
-# Upgrade and Update the system
-echo -e "${GREEN}Running apt update..."
-sudo apt update
-echo -e "${NC}"
 
-echo -e "${MAGENTA}Running apt upgrade..."
-sudo apt upgrade -y
-echo -e "${NC}"
+if [[ $days -ge 3 ]]; then
+   force_log_reset="yes"
+    echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+    else
+    force_log_reset="no"
+    echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+fi
+
+if dpkg -s pihole &> /dev/null; then
+
+echo -e "${GREEN}Pihole Updates!${NC}"
+
+    # Pi-hole is installed, run the commands
+    pihole arpflush
+    pihole restartdns
+    pihole -g
+    pihole restartdns
+    pihole -up
+
+echo $USER "@" $HOSTNAME
+
+echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
+sleep 2
+
+echo -e "${RED}Reset logs anyway? ( $force_log_reset ) ${NC}"
+read -p "Force log reset? (y/n): " override
+
+if [[ -n $override ]]; then
+    force_log_reset=$override
+else
+    echo -e "${YELLOW}No input received. Using default value $force_log_reset .${NC}"
+fi
+
+if [[ $force_log_reset != "no" && $force_log_reset != "n" ]]; then
+   echo -e "${RED} $force_log_reset was selected.${NC}"
+   echo -e "${YELLOW}Flushing Logs${NC}"
+   echo "# output current pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+   echo "# current old db size"
+        sudo du -h /etc/pihole/pihole-FTL-old.db -h
+   echo "#pihole flush"
+      pihole flush
+   echo "# Output pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+        sudo rm /etc/pihole/pihole-FTL-old.db 
+      sleep 3
+    echo "# Stop pihole FTL service"
+        sudo systemctl stop pihole-FTL
+    echo "# Delete the FTL database file"
+        sudo service pihole-FTL stop
+    echo "moving current db to old db"
+        sudo mv /etc/pihole/pihole-FTL.db /etc/pihole/pihole-FTL-old.db
+        sudo service pihole-FTL start
+    echo "# Start pihole FTL service"
+        sudo systemctl start pihole-FTL
+    echo "# Output reduced pihole db size"
+        sudo du -h /etc/pihole/pihole-FTL.db -h
+        sudo du -h /etc/pihole/pihole-FTL-old.db -h
+    sleep 8
+elif [[ $force_log_reset != "yes" && $force_log_reset != "y" ]]; then
+  echo -e "The system has ${RED}not${NC} been running for longer than three days. ${GREEN}No db operations required.${NC}"
+  echo -e "${GREEN}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+  sleep 4
+else
+    echo -e "${YELLOW}Invalid input.${NC}"
+fi
+fi 
+######merged ###
+
+
+# Define the package manager update/upgrade commands
+update_command=""
+upgrade_command=""
+
+# Check which package manager is available
+if command -v apt &> /dev/null; then
+    update_command="sudo apt update"
+    upgrade_command="sudo apt upgrade -y"
+elif command -v pacman &> /dev/null; then
+    update_command="sudo pacman -Sy"
+    upgrade_command="sudo pacman -Syu --noconfirm"
+elif command -v dnf &> /dev/null; then
+    update_command="sudo dnf check-update"
+    upgrade_command="sudo dnf upgrade -y"
+elif command -v pkg &> /dev/null; then
+    update_command="sudo pkg update"
+    upgrade_command="sudo pkg upgrade -y"
+else
+    echo "Unable to determine the package manager. Please update and upgrade manually."
+    exit 1
+fi
+
+# Update the system
+echo "Updating packages..."
+$update_command
+
+# Upgrade the system
+echo "Upgrading packages..."
+$upgrade_command
 
 echo -e "${CYAN}Running apt autoremove..."
 sudo apt autoremove
