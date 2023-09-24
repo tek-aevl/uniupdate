@@ -138,8 +138,7 @@ if [[ $days -ge 3 ]]; then
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
 fi
 
-if dpkg -s pihole &> /dev/null; then
-
+if pihole -v &> /dev/null; then 
 echo -e "${GREEN}Pihole Updates!${NC}"
 
     # Pi-hole is installed, run the commands
