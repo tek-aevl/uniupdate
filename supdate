@@ -48,7 +48,7 @@ echo "...done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
-bridge_clients=$(ip neigh show dev virbr0 | awk '{print $1}') && echo $bridge_clients
+bridge_clients=$(ip neigh show dev vmbr0 | awk '{print $1}') && echo $bridge_clients
 echo "$bridge_clients ...done..."
 sleep 2
 
