@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#V.14.1# To use this in cli use"
+echo "#V.17# To use this in cli use"
 echo "sudo nano /bin/prune
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
