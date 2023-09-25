@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "#v.83# To use this in cli use
+echo "#v.83.1# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
-bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/supdate)
+bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/pve/supdate)
 echo 'bye'
 ###above###
 "
