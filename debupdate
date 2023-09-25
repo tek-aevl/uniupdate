@@ -1,12 +1,14 @@
 #!/bin/bash
-echo "#v0.80## To use this in cli use"
+echo "#v0.81## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
+echo -e "Hello $USER this script will use sudo to function." 
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)
 echo 'bye'
 #To use run
 bash update
+ctrl+c to kill this if you disagree.  
 "
 sleep 4
 
@@ -67,7 +69,7 @@ sudo -A who -a
 sleep 2
 fi
 
-# Define a list of programs to check
+# Programs needed in order to use ths script.
 programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent")
 
 # Define the corresponding package names for each program
