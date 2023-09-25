@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.81## To use this in cli do the following"
+echo "#v0.82## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -327,7 +327,7 @@ sleep 3
 fi
 
 echo -e "${YELLOW}Speedtest!${NC}" 
-nettest="no"
+nettest="yes"
 read -p "Speedtest? (y/n): ($nettest) " nettest
 
 if [[ -n $nettest ]]; then
