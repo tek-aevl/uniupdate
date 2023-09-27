@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "#v.83.1# To use this in cli use
+echo "#v.85# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
-bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/pve/supdate)
+bash <(curl -c https://git.aevl.net/Tek/umupdate/raw/branch/main/supdate))
 echo 'bye'
 ###above###
 "
@@ -48,7 +48,7 @@ echo "...done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
-bridge_clients=$(ip neigh show dev vmbr0 | awk '{print $1}') && echo $bridge_clients
+bridge_clients=$(ip neigh show dev br00 | awk '{print $1}') && echo $bridge_clients
 echo "$bridge_clients ...done..."
 sleep 2
 
