@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.87# To use this in cli use
+echo "#v.89# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -83,9 +83,11 @@ for ip in $ip_list; do
     if check_pihole $ip; then
       echo -e "Pi-hole detected on $ip "
       ssh -yt $ip "(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/rpi-update)|bash"
+      ssh -tY $ip "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
     else
       echo -e "Running Debian Based Updates on $ip "
         ssh -tY $ip "bash update"
+        ssh -tY $ip "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
       #ssh -tY $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)"
     fi
 done
