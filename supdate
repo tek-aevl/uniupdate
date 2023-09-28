@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.85# To use this in cli use
+echo "#v.87# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -11,7 +11,7 @@ echo "#To use run"
 echo "bash update"
 sleep 2
 echo "setting functions"
- Function to check and copy SSH key to a remote host if needed
+#Function to check and copy SSH key to a remote host if needed
 function copy_ssh_key() {
     if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
         echo "SSH key not found. Generating a new SSH key..."
