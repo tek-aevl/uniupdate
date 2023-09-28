@@ -1,0 +1,16 @@
+#!/bin/bash
+#alpha-v.01
+
+LOG_DIR="/var/log"
+LOG_FILES="$LOG_DIR/*.log"
+MAX_AGE_DAYS=30
+sudo ncdu $LOG_DIR
+echo "This script will delete log files older than $MAX_AGE_DAYS days in $LOG_DIR."
+read -p "Are you sure you want to proceed? (y/n): " confirm
+
+if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+    find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print -exec rm {} \;
+    echo "Log files older than $MAX_AGE_DAYS days have been deleted."
+else
+    echo "Operation cancelled."
+fi
