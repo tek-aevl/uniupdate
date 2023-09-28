@@ -1,6 +1,6 @@
 #!/bin/bash
 #alpha-v.02
-
+echo -e "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
 LOG_DIR="/var/log"
 LOG_FILES="$LOG_DIR/*.log"
 MAX_AGE_DAYS=30
