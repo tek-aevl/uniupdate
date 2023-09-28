@@ -11,11 +11,11 @@ read -p "Do you want to proceed? (y/n): " confirm
 
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     echo "The following log files will be deleted:"
-    find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
+    sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
     read -p "Are you sure you want to delete these files? (y/n): " delete_confirm
 
     if [[ $delete_confirm == [yY] || $delete_confirm == [yY][eE][sS] ]]; then
-        find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
+       sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
         echo "Log files older than $MAX_AGE_DAYS days have been deleted."
     else
         echo "Operation cancelled."
