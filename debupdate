@@ -209,8 +209,9 @@ upgrade_command=""
 if command -v apt &> /dev/null; then
     update_command="sudo apt update"
     upgrade_command="sudo apt upgrade -y" 
+    
     #secret#
-    echo-e  "${RED}autoremove${NC}"
+    echo -e  "${RED}autoremove${NC}"
     sudo apt autoremove -y
 
 elif command -v pacman &> /dev/null; then
