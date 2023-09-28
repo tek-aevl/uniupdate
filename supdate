@@ -3,29 +3,29 @@ echo "#v.85# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
-bash <(curl -c https://git.aevl.net/Tek/umupdate/raw/branch/main/supdate))
+bash <(curl -c https://git.aevl.net/Tek/umupdate/raw/branch/main/supdate)
 echo 'bye'
 ###above###
 "
 echo "#To use run"
 echo "bash update"
 sleep 2
-#echo "setting functions"
-# Function to check and copy SSH key to a remote host if needed
-#function copy_ssh_key() {
-#    if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
-#        echo "SSH key not found. Generating a new SSH key..."
-#        ssh-keygen -t rsa
-#    fi
-#    # Check if the SSH key is already present on the remote host
-#   if ! ssh-add -L | grep -qF "$(cat ~/.ssh/id_rsa.pub)"; then
-#        #read -p "Enter the IP address or hostname of the remote host: " ip
-#       echo "Current client $ip"
-#        ssh-copy-id "$ip"
-#    else
-#        echo "SSH key is already copied to the remote host. No need to copy again."
-#    fi
-#}
+echo "setting functions"
+ Function to check and copy SSH key to a remote host if needed
+function copy_ssh_key() {
+    if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
+        echo "SSH key not found. Generating a new SSH key..."
+        ssh-keygen -t rsa
+    fi
+    # Check if the SSH key is already present on the remote host
+   if ! ssh-add -L | grep -qF "$(cat ~/.ssh/id_rsa.pub)"; then
+        #read -p "Enter the IP address or hostname of the remote host: " ip
+       echo "Current client $ip"
+        ssh-copy-id "$ip"
+    else
+        echo "SSH key is already copied to the remote host. No need to copy again."
+    fi
+}
 
 # Function to check if Pi-hole is installed and running on a host
 function check_pihole {
@@ -48,7 +48,7 @@ echo "...done..."
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
-bridge_clients=$(ip neigh show dev br00 | awk '{print $1}') && echo $bridge_clients
+bridge_clients=$(ip neigh show dev virbr0 | awk '{print $1}') && echo $bridge_clients
 echo "$bridge_clients ...done..."
 sleep 2
 
