@@ -1,22 +1,30 @@
 #!/bin/bash
-#alpha-v.02
+#alpha-v.03
 echo -e "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
+
 LOG_DIR="/var/log"
 LOG_FILES="$LOG_DIR/*.log"
 MAX_AGE_DAYS=30
-sudo ncdu $LOG_DIR
+
+#sudo ncdu $LOG_DIR
+
+echo "Disk space usage before log file deletion:"
+df -h $LOG_DIR
 
 echo "This script will list log files older than $MAX_AGE_DAYS days in $LOG_DIR."
 read -p "Do you want to proceed? (y/n): " confirm
 
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     echo "The following log files will be deleted:"
-    sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
+    find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
     read -p "Are you sure you want to delete these files? (y/n): " delete_confirm
 
     if [[ $delete_confirm == [yY] || $delete_confirm == [yY][eE][sS] ]]; then
-       sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
+        find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
         echo "Log files older than $MAX_AGE_DAYS days have been deleted."
+
+        echo "Disk space usage after log file deletion:"
+        df -h $LOG_DIR
     else
         echo "Operation cancelled."
     fi
