@@ -1,30 +1,57 @@
 #!/bin/bash
-#alpha-v.03
-echo -e "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
+# alpha-v.04
+echo -e "Usage: bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
 
 LOG_DIR="/var/log"
 LOG_FILES="$LOG_DIR/*.log"
 MAX_AGE_DAYS=30
 
-#sudo ncdu $LOG_DIR
+function view_details() {
+    echo "Viewing details with sudo ncdu $LOG_DIR:"
+    sudo ncdu $LOG_DIR
+}
 
-echo "Disk space usage before log file deletion:"
-df -h $LOG_DIR
+echo "Can you run commands with sudo? (y/n): "
+read sudo_confirm
+
+if [[ $sudo_confirm == [yY] || $sudo_confirm == [yY][eE][sS] ]]; then
+    sudo echo "AWESOME! You can sudo"
+else
+    echo "You need to be able to run commands with sudo to proceed."
+    exit 1
+fi
+
+echo "Disk usage before log file deletion:"
+du -h $LOG_DIR
+
+echo "Do you want to view more details before log file deletion? (y/n): "
+read details_confirm
+
+if [[ $details_confirm == [yY] || $details_confirm == [yY][eE][sS] ]]; then
+    view_details
+fi
 
 echo "This script will list log files older than $MAX_AGE_DAYS days in $LOG_DIR."
 read -p "Do you want to proceed? (y/n): " confirm
 
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
     echo "The following log files will be deleted:"
-    find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
+    sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -print
     read -p "Are you sure you want to delete these files? (y/n): " delete_confirm
 
     if [[ $delete_confirm == [yY] || $delete_confirm == [yY][eE][sS] ]]; then
-        find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
+        sudo find $LOG_DIR -type f -name '*.log' -mtime +$MAX_AGE_DAYS -exec rm {} \;
         echo "Log files older than $MAX_AGE_DAYS days have been deleted."
 
-        echo "Disk space usage after log file deletion:"
-        df -h $LOG_DIR
+        echo "Disk usage after log file deletion:"
+        du -h $LOG_DIR
+
+        echo "Do you want to view more details after log file deletion? (y/n): "
+        read details_confirm
+
+        if [[ $details_confirm == [yY] || $details_confirm == [yY][eE][sS] ]]; then
+            view_details
+        fi
     else
         echo "Operation cancelled."
     fi
