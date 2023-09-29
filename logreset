@@ -58,4 +58,4 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 else
     echo "Operation cancelled."
 fi
-echo "Goodbye!"
+echo "Goodbye! Happy Scripting!"
