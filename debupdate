@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.84## To use this in cli do the following"
+echo "#v0.86## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -70,10 +70,10 @@ sleep 2
 fi
 
 # Programs needed in order to use ths script.
-programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban")
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
 
 # Define the corresponding package names for each program
-package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban")
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
 
 # Loop through the programs
 for ((i=0; i<${#programs[@]}; i++)); do
