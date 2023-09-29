@@ -22,7 +22,7 @@ else
 fi
 
 echo "Disk usage before log file deletion:"
-du -h $LOG_DIR
+sudo du -h $LOG_DIR
 
 echo "Do you want to view more details before log file deletion? (y/n): "
 read details_confirm
@@ -44,7 +44,7 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
         echo "Log files older than $MAX_AGE_DAYS days have been deleted."
 
         echo "Disk usage after log file deletion:"
-        du -h $LOG_DIR
+        sudo du -h $LOG_DIR
 
         echo "Do you want to view more details after log file deletion? (y/n): "
         read details_confirm
@@ -58,3 +58,4 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 else
     echo "Operation cancelled."
 fi
+echo "Goodbye!"
