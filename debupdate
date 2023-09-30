@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.86## To use this in cli do the following"
+echo "#v0.87## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -11,7 +11,19 @@ bash update
 ctrl+c to kill this if you disagree.  
 "
 sleep 4
-
+if [ -f "/bin/update" ]; then
+    echo "The file /bin/update already exists."
+else
+    echo "The file /bin/update does not exist."
+    read -p "Do you want to install it? (y/n): " choice
+    if [ "$choice" == "y" ]; then
+        echo -e '#!/bin/bash\necho -e "Hello $USER this script will use sudo to function."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/debupdate)\necho "bye"\n#To use run\nbash update\nctrl+c to kill this if you disagree.' | sudo tee /bin/update > /dev/null
+        sudo chmod +x /bin/update
+        echo "Installed /bin/update successfully."
+    else
+        echo "Installation cancelled."
+    fi
+fi
 ###export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
 # Set the colors
