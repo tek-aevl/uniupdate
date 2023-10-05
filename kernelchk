@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#c.63# To use this in cli use"
+echo "#c.64# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -65,7 +65,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${BLUE}Running Kernel: $running_kernel${NC}"
         echo -e "${BLUE}Installed Kernel: $installed_kernel${NC}"
         echo -e "${RED}System Uptime: $uptime${NC}"
-        echo -e "${GREEN}Running kernel matches installed kernel${NC}, but the system has been running for more than 6 days."
+        echo -e "${GREEN}Running kernel matches installed kernel${NC}, but the system has been running for $uptime."
         echo -e "It is ${YELLOW}recommended${NC} to ${YELLOW}reboot${NC} the system."
         echo -e "${RED}=>6${NC}"
         sleep 5
@@ -82,7 +82,7 @@ else
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "Running kernel matches installed kernel and the system has been running for less than 6 days."
+        echo -e "Running kernel matches installed kernel and the system has been running for $uptime."
         echo -e "${GREEN}All Checks PASSED.${NC}"
         echo -e "${GREEN}=&<6${NC}"
         sleep 5
