@@ -1,7 +1,7 @@
 #!/bin/bash
 # alpha-v.04
 echo -e "Usage: bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
-
+echo "$USER"
 LOG_DIR="/var/log"
 LOG_FILES="$LOG_DIR/*.log"
 MAX_AGE_DAYS=30
