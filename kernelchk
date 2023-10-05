@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#c.62# To use this in cli use"
+echo "#c.63# To use this in cli use"
 echo "sudo nano /bin/usr/kernelchk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -41,9 +41,9 @@ function version_compare() {
     if [[ $1 == $2 ]]; then
         echo -e "equal"
     elif [[ $1 < $2 ]]; then
-        echo -e "less than!"
+        echo -e "less"
     else
-        echo -e "greater than!"
+        echo -e "greater"
     fi
 }
 
@@ -73,7 +73,7 @@ elif [[ $uptime == *"day"* ]]; then
         echo -e "${GREEN}Running Kernel: $running_kernel${NC}"
         echo -e "${GREEN}Installed Kernel: $installed_kernel${NC}"
         echo -e "${MAGENTA}System Uptime: $uptime${NC}"
-        echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel${NC} and the system has been running for less than 6 days."
+        echo -e "${GREEN}Running kernel${NC} matches ${GREEN}installed kernel${NC} and the system has been running for $uptime."
         echo -e "${GREEN}Rebooting ${NC}is ${GREEN}unnecessary${NC} at this time."
         echo -e "${YELLOW}=<6${NC}"
         sleep 5
