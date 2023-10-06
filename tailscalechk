@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v1# Tailscale update checker, use this in cli/tui to use"
+echo "#v1.2# Tailscale update checker, use this in cli/tui to use"
 echo "sudo nano /bin/tailscalechk
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -41,6 +41,6 @@ else
     echo "Running version is $running_version up to date. Installed version is $installed_version up to date."
     sleep 3
 fi
-
+sudo tailscale status
 echo "tailscalechk complete ;-p"
 sleep 3
