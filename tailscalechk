@@ -38,7 +38,7 @@ if [[ "$installed_version" != "$running_version" ]]; then
     sudo systemctl restart tailscaled
     sudo systemctl status  tailscaled
 else
-    echo "Running version is up to date."
+    echo "Running version is $running_version up to date. Installed version is $installed_version up to date."
 fi
 
 echo "tailscalechk complete ;-p"
