@@ -80,7 +80,7 @@ sudo -A who -a
 sleep 2
 fi
 
-# Programs needed in order to use ths script.
+# Programs needed in order to use this script.
 programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
 
 # Define the corresponding package names for each program
@@ -104,12 +104,15 @@ for ((i=0; i<${#programs[@]}; i++)); do
             sudo dnf install -y $package_name
         elif command -v pkg &> /dev/null; then  # Add support for FreeBSD
             sudo pkg install -y $package_name
+        elif command -v zypper &> /dev/null; then  # Add support for openSUSE
+            sudo zypper install -y $package_name
         else
             echo "Unable to install $package_name. Please install it manually."
         fi
     fi
     echo -e "${NC} $package_name ${GREEN} Installed ${MAGENTA}!${NC}"
 done
+
 
 echo "get-time $USER@$HOSTNAME ($HOST_IP)"
 # Get the current timestamp
