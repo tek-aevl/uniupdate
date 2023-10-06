@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v0.91## To use this in cli do the following"
+echo "#v0.92## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 #!/bin/bash
 echo -e "Hello $USER this script will use sudo to function." 
@@ -344,17 +344,16 @@ sleep 3
   fi
 fi
 
-echo -e "${YELLOW}Speedtest!${NC}" 
-nettest="yes"
-read -p "Speedtest? (y/n): ($nettest) " nettest
 
-if [[ -n $nettest ]]; then
-    if [[ $nettest == "yes" ]] || [[ $nettest == "y" ]]; then
+read -p "Speedtest? (y/n): ($nettest) " response
+
+if [[ -n $response ]]; then
+    if [[ $response == "yes" ]] || [[ $response == "y" ]]; then
         echo "$USER@$HOSTNAME speedtest"
         speedtest --secure
         sleep 3
-    elif [[ $nettest == "no" ]] || [[ $nettest == "n" ]]; then
-        echo -e "${GREEN} Not running speedtest : System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+    elif [[ $response == "no" ]] || [[ $response == "n" ]]; then
+        echo -e "${GREEN}Not running speedtest : System uptime: $(uptime)${NC}" 
         sleep 4
     else
         echo -e "${YELLOW}Invalid input.${NC}"
