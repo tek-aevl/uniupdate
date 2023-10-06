@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v1.03## To use this in cli do the following"
+echo "#v1.04## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 #!/bin/bash
 echo -e "Hello $USER this script will use sudo to function." 
@@ -225,9 +225,9 @@ if command -v apt &> /dev/null; then
     upgrade_command="sudo apt upgrade -y" 
     
     #secret#
-    echo -e  "${RED}autoremove${NC}"
+    echo -e  "${RED}autoremove"
     sudo apt autoremove -y
-
+    echo -e  "${NC}"
 elif command -v pacman &> /dev/null; then
     update_command="sudo pacman -Sy"
     upgrade_command="sudo pacman -Syu --noconfirm"
