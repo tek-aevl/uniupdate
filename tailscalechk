@@ -10,17 +10,28 @@ echo "#To use run"
 echo "bash tailscalechk"
 sleep 2
 echo "This was made for ArchLinux"
-# Get the installed version of tailscale
-#installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
-installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}')
 
-echo $installed_version
+# Function to check if a command executed successfully
+check_command() {
+    if [ $? -ne 0 ]; then
+        echo "Error: $1 failed"
+        exit 1
+    fi
+}
+
+# Get the installed version of tailscale
+installed_version=$(sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}')
+check_command "pacman -Qi tailscale"
+
+echo "Installed version: $installed_version"
+
 # Get the running version of tailscale
-#running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
-running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}')
-echo $running_version
+running_version=$(sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}')
+check_command "tailscale version"
+
+echo "Running version: $running_version"
+
 # Compare the versions using 'sort' command
-# '-V' flag performs a version sort (e.g., 1.2 < 1.11)
 if [[ "$installed_version" != "$running_version" ]]; then
     echo "Running version is older than installed version. Restarting tailscaled..."
     sudo tailscale version
@@ -29,10 +40,5 @@ if [[ "$installed_version" != "$running_version" ]]; then
 else
     echo "Running version is up to date."
 fi
-echo "Running verion" 
-sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}'
-sudo pacman -Qi tailscale | awk '/^Version/ {gsub(/-.*$/, "", $3); print $3}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}'
-echo "Installed version"
-sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}'
-sudo tailscale version | awk '/^([0-9]+\.)+[0-9]+/{sub(/-dev.*/, "", $1); print $1}' | awk -F. '{printf "%s.%s.%s.%s\n", $1, $2, $3, 0}'
+
 echo "tailscalechk complete ;-p"
