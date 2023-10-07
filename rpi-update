@@ -1,6 +1,6 @@
 #!/bin/bash
 ###################################################################################################################
-echo "#c.68###TEST-premerge# To use this in cli use"
+echo "#c.69###TEST-premerge# To use this in cli use"
 echo "sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -52,7 +52,9 @@ for ((i=0; i<${#programs[@]}; i++)); do
     fi
     echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
 done
-
+sudo api update 
+sudo apt upgrade -y     
+sudo apt autoremove -y
 echo -e "${NC}"
 # Get the uptime of the system
 uptimen=$(uptime -s)
