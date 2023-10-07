@@ -1,5 +1,5 @@
 #!/bin/bash
-v="1.07"
+v="1.08"
 echo "#V$v## To use this in cli do the following"
 echo "sudo nano /bin/update
 #!/bin/bash
@@ -350,7 +350,7 @@ echo $USER "@" $HOSTNAME
 fi
 
 echo $USER "@" $HOSTNAME
-read -p "Speedtest? (y/n): ($nettest) " response
+read -p "Speedtest? (y/n): (n) " response
 
 if [[ -n $response ]]; then
     if [[ $response == "yes" ]] || [[ $response == "y" ]]; then
