@@ -52,7 +52,7 @@ for ((i=0; i<${#programs[@]}; i++)); do
     fi
     echo -e "${GREEN}$package_name Installed ${MAGENTA}!${NC}"
 done
-sudo api update 
+sudo apt update 
 sudo apt upgrade -y     
 sudo apt autoremove -y
 echo -e "${NC}"
