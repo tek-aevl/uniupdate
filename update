@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v1.04## To use this in cli do the following"
+echo "#v1.05## To use this in cli do the following"
 echo "sudo nano /bin/usr/update
 #!/bin/bash
 echo -e "Hello $USER this script will use sudo to function." 
@@ -74,7 +74,7 @@ sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
  echo -e "${GREEN}You can Sudo. Right? ${NC}"
 sudo sleep 1
-else
+elif sudo -v 2>&1;then 
    echo -e "${YELLOW}Sudo password is required.${NC}"
 sudo -A who -a
 sleep 2
