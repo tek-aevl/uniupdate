@@ -1,5 +1,5 @@
 #!/bin/bash
-v="1.12"
+v="1.13"
 echo "#V$v## To use this in cli do the following"
 echo "sudo nano /bin/update
 #!/bin/bash
@@ -145,13 +145,13 @@ days=$(echo "$uptime_seconds / 86400" | bc)
 hours=$(echo "$uptime_seconds % 86400 / 3600" | bc)
 minutes=$(echo "$uptime_seconds % 3600 / 60" | bc)
 
-echo -e "${YELLOW} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
+echo -e "${RED} Current Time variables : $days days, $hours hours, $minutes minutes ${NC}"
 sleep 4
 
 
 if [[ $days -ge 3 ]]; then
    force_log_reset="yes"
-    echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
+    echo -e "${RED}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
     else
     force_log_reset="no"
     echo -e "${YELLOW}System uptime: $days days, $hours hours, $minutes minutes ${NC}" 
@@ -228,7 +228,7 @@ if command -v apt &> /dev/null; then
     upgrade_command="sudo apt upgrade -y" 
     
     #secret#
-    echo -e  "${RED}autoremove"
+    echo -e  "${YELLOW}autoremove"
     sudo apt autoremove -y
     echo -e  "${NC}"
     echo -e "${CYAN}Running apt autoremove..."
@@ -259,7 +259,7 @@ $update_command
 echo "Upgrading packages..."
 $upgrade_command
 
-echo -e " ${YELLOW} Script completed.${NC} "
+echo -e " ${GREEN} Script completed.${NC} "
 sleep 1
 # Get the running kernel version
 version=$(uname -r)
