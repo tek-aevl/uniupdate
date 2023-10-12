@@ -1,5 +1,5 @@
 #!/bin/bash
-v="1.13"
+v="1.14"
 echo "#V$v## To use this in cli do the following"
 echo "sudo nano /bin/update
 #!/bin/bash
@@ -231,12 +231,12 @@ if command -v apt &> /dev/null; then
     echo -e  "${YELLOW}autoremove"
     sudo apt autoremove -y
     echo -e  "${NC}"
-    echo -e "${CYAN}Running apt autoremove..."
+    echo -e "${GREEN}Running apt autoremove..."
     sudo apt autoremove
     echo -e "${NC}"
 elif command -v pacman &> /dev/null; then
-    update_command="sudo pacman -Sy"
-    upgrade_command="sudo pacman -Syu --noconfirm"
+    update_command="sudo pacman -Syu"
+    upgrade_command="sudo pacman -Syyu --noconfirm"
 elif command -v dnf &> /dev/null; then
     update_command="sudo dnf check-update"
     upgrade_command="sudo dnf upgrade -y"
