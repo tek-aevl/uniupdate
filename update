@@ -1,5 +1,5 @@
 #!/bin/bash
-v="1.14"
+v="1.15"
 echo "#V$v## To use this in cli do the following"
 echo "sudo nano /bin/update
 #!/bin/bash
@@ -19,7 +19,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-        echo -e '#!/bin/bash\nv="1.09"\necho "#V$v##\necho -e "Hello $USER this script will use sudo to function."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\necho "bye"\n#To use run\nbash update\nctrl+c to end this if you disagree.' | sudo tee /bin/update > /dev/null
+        echo -e '#!/bin/bash\nv="1.15"\necho "#V$v##\n Hello $USER this script will use sudo to function."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\n echo "bye., \n#To use run\nbash update\nctrl+c to end this if you disagree."' | sudo tee /bin/update > /dev/null
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
