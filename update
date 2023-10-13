@@ -1,12 +1,12 @@
 #!/bin/bash
-v="1.15"
+v="1.16"
 echo "#V$v## To use this in cli do the following"
-echo "sudo nano /bin/update
-#!/bin/bash
-echo -e "Hello $USER this script will use sudo to function." 
+echo "sudo nano /bin/update"
+echo "#!/bin/bash"
+echo -e 'Hello $USER this script will use sudo to function." 
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
 echo 'bye'
-#To use run
+echo "#To use run
 bash update
 ctrl+c to end this if you disagree.  
 "
@@ -19,7 +19,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-        echo -e '#!/bin/bash\nv="1.15"\necho "#V$v##\n Hello $USER this script will use sudo to function."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\n echo "bye., \n#To use run\nbash update\nctrl+c to end this if you disagree."' | sudo tee /bin/update > /dev/null
+        echo -e '#!/bin/bash\nv="1.16"\necho "#V$v##\n Hello $USER this script will use sudo to function."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\n echo "bye., \n#To use run\nbash update\nctrl+c to end this if you disagree."' | sudo tee /bin/update > /dev/null
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
