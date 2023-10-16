@@ -1,6 +1,5 @@
 #!/bin/bash
-v="1.19"
-echo "#V" $v "## To use this in cli do the following"
+echo "#v1.20#" To use this in cli do the following"
 echo "sudo cat /bin/update"
 echo "#!/bin/bash"
 echo -e 'Hello $USER this script will use sudo to function." 
@@ -18,7 +17,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-        echo -e '#!/bin/bash\nv="1.19"\necho "#V" $v "##"\n echo "Hello $USER this script will use sudo to function."\necho "#To use run"\n echo "bash update"\n echo "ctrl+c to end this if you disagree."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\n echo "bye.," ' | sudo tee /bin/update > /dev/null
+        echo -e '#!/bin/bash\necho "#v1.20#"\n echo "Hello $USER this script will use sudo to function."\necho "#To use run"\n echo "bash update"\n echo "ctrl+c to end this if you disagree."\nbash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)\n echo "bye.," ' | sudo tee /bin/update > /dev/null
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
