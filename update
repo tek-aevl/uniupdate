@@ -1,25 +1,19 @@
 #!/bin/bash
-echo "#v1.25# To use this in cli do the following
-sudo nano /bin/update
-# copy the next 4 lines into it with, and chmod it to 755  
-#!/bin/bash
-#v1.24# To use this in cli do the following
+echo "#v1.25# Assistance at https://git.aevl.net/tek/umupdate
+#To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
 echo 'bye;p'
-#To use run
-bash update
 ";
-
 sleep 4
 if [ -f "/bin/update" ]; then
     echo "The file /bin/update already exists."
-#sudo rm /bin/update
 
+#sudo rm /bin/update
 else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       echo -e '"#v1.24# To use this in cli do the following \n sudo nano /bin/update \n # copy the next 4 lines into it with, and chmod it to 755 \n #!/bin/bash \n #v1.25# To use this in cli do the following \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo 'bye;p' \n #To use run \n bash update \n";' | sudo tee /bin/update > /dev/null
+       echo -e '"#v1.25# \n Assistance at https://git.aevl.net/tek/umupdate #To use run \n bash update \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo 'bye;p' ";' | sudo tee /bin/update > /dev/null
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
