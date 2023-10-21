@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v1.25# Assistance at https://git.aevl.net/tek/umupdate
+echo "#v1.26# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
 echo 'bye;p'
@@ -13,7 +13,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       echo -e '"#v1.25# \n Assistance at https://git.aevl.net/tek/umupdate #To use run \n bash update \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo 'bye;p' ";' | sudo tee /bin/update > /dev/null
+       echo -e '"#v1.26# \n Assistance at https://git.aevl.net/tek/umupdate #To use run \n bash update \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo 'bye;p';" | sudo tee /bin/update > /dev/null
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
