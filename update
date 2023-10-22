@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.36"
+version="v1.37"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -8,7 +8,6 @@ echo 'bye ;p'
 sleep 4
 if [ -f "/bin/update" ]; then
     cat /bin/update
-    echo "The file /bin/update already exists."
 ###head -l 2 
 echo "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
  echo "The file /bin/update already exist."
