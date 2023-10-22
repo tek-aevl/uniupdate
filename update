@@ -1,24 +1,34 @@
 #!/bin/bash
-echo "#v1.30# Assistance at https://git.aevl.net/tek/umupdate
+version="v1.31"
+echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-echo 'bye;p'
+echo 'bye ;p'
 ";
 sleep 4
 if [ -f "/bin/update" ]; then
+    cat /bin/update
     echo "The file /bin/update already exists."
-
-#sudo rm /bin/update
+###head -l 2 
+echo "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
+ echo "The file /bin/update does not exist."
+    read -p "Do you update to new version? (y/n): " choice
+    if [ "$choice" == "y" ]; then
+       sudo rm /bin/update
+    else
+        echo "Cancelled."
+ fi
 else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       echo -e 'echo "#v1.30#" \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo "bye"' | sudo tee /bin/update > /dev/null
+       echo -e 'echo "#!/bin/bash" \n echo "$version" \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo "bye!"' | sudo tee /bin/update > /dev/null
+        sudo chmod 644 /bin/update
         sudo chmod +x /bin/update
         echo "Installed /bin/update successfully."
     else
         echo "Installation cancelled."
-    fi
+ fi
 fi
 ###export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
