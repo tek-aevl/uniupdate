@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.35"
+version="v1.36"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -11,12 +11,13 @@ if [ -f "/bin/update" ]; then
     echo "The file /bin/update already exists."
 ###head -l 2 
 echo "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
- echo "The file /bin/update does not exist."
+ echo "The file /bin/update already exist."
     read -p "Do you update to new version? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       sudo rm /bin/update
+    echo "removing old"
+    sudo rm /bin/update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-       exit
+    exit
     else
         echo "Cancelled."
  fi
