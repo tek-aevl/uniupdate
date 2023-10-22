@@ -161,7 +161,7 @@ echo -e "${GREEN}Pihole Updates!${NC}"
     pihole restartdns
     pihole -up
 
-echo $USER "@" $HOSTNAME
+echo '$USER "@" $HOSTNAME'
 
 echo -e "${CYAN} Automatically selected $force_log_reset ${NC}"
 sleep 2
@@ -209,7 +209,6 @@ else
     echo -e "${YELLOW}Invalid input.${NC}"
 fi
 fi 
-######merged ###
 
 
 # Define the package manager update/upgrade commands
