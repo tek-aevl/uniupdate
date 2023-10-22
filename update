@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.31"
+version="v1.32"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -15,6 +15,8 @@ echo "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
     read -p "Do you update to new version? (y/n): " choice
     if [ "$choice" == "y" ]; then
        sudo rm /bin/update
+bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
+       exit
     else
         echo "Cancelled."
  fi
