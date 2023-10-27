@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.39"
+version="v1.40"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -128,9 +128,9 @@ for ((i=0; i<${#programs[@]}; i++)); do
             echo "Unable to install $package_name. Please install it manually."
         fi
     fi
-    echo -e "!${NC} ${GREEN} $package_name Installed ${MAGENTA}!"
+    echo -e "${NC}! ${GREEN} $package_name Installed ${MAGENTA}!"
 done
-echo -e "${NC}"
+echo -e ";-P${NC}"
 
 echo "get-time $USER@$HOSTNAME ($HOST_IP)"
 # Get the current timestamp
