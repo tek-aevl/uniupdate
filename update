@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.38"
+version="v1.39"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -32,6 +32,7 @@ else
         echo "Cat contents"
         cat /bin/update
         echo "Installed /bin/update successfully."
+        sleep 6
     else
         echo "Installation cancelled."
  fi
@@ -56,7 +57,7 @@ NC='\033[0m'           # No color
 echo -e "This ${RED}text${NC} is ${RED}red.${NC}"
 echo -e "This ${YELLOW}text${NC} is ${YELLOW}yellow.${NC}"
 echo -e "This ${GREEN}text${NC} is ${GREEN}green.${NC}"
-sleep 4
+sleep 1
 
 # Get the IP address of the host
 HOST_IP=$(hostname -I | awk '{print $1}')
@@ -86,11 +87,12 @@ echo -e "${RED} Password $USER@$HOSTNAME ($HOST_IP)  "
 sudo -v 2>&1 | grep "Sorry, try again." > /dev/null
 if [ $? -eq 0 ]; then
  echo -e "${GREEN}You can Sudo. Right? ${NC}"
+last 5
 sudo sleep 1
 elif sudo -v 2>&1;then 
    echo -e "${YELLOW}Sudo password is required.${NC}"
-sudo -A who -a
-sleep 2
+sudo who -a
+sudo sleep 2
 fi
 
 # Programs needed in order to use this script.
@@ -98,6 +100,9 @@ programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu
 
 # Define the corresponding package names for each program
 package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
+
+# Define the corresponding package names for each program
+package_deletes=("")
 
 # Loop through the programs
 for ((i=0; i<${#programs[@]}; i++)); do
@@ -123,9 +128,9 @@ for ((i=0; i<${#programs[@]}; i++)); do
             echo "Unable to install $package_name. Please install it manually."
         fi
     fi
-    echo -e "${NC} $package_name ${GREEN} Installed ${MAGENTA}!${NC}"
+    echo -e "!${NC} ${GREEN} $package_name Installed ${MAGENTA}!"
 done
-
+echo -e "${NC}"
 
 echo "get-time $USER@$HOSTNAME ($HOST_IP)"
 # Get the current timestamp
