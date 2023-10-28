@@ -1,5 +1,6 @@
 #!/bin/bash
-version="v1.41"
+version="v1.42"
+echo "$USER@$HOSTNAME"
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -7,26 +8,33 @@ echo 'bye ;-P'
 ";
 sleep 4
 if [ -f "/bin/update" ]; then
+   installed_version=$(grep -oP '(?<=#)\S+(?=#)' /bin/update)
+   echo "Installed Version is $installed_version"
+  if [ "$installed_version" == "$version" ]; then
+        echo "Version matches!"
+    else
+        echo "Version mismatch! Installed version: $installed_version"
     cat /bin/update
-###head -l 2 
-echo "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
  echo "The file /bin/update already exist."
     read -p "Do you update to new version? (y/n): " choice
     if [ "$choice" == "y" ]; then
     echo "Removing old"
     sudo rm /bin/update
     sudo cat /bin/update
+    echo '$USER "@" $HOSTNAME'
     echo "Running new bash"
-bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
+    bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
     exit
+    echo '$USER "@" $HOSTNAME'
     else
         echo "Cancelled."
  fi
+fi
 else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       echo -e '#!/bin/bash \n echo "'$version'" \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo "bye!"' | sudo tee /bin/update > /dev/null
+       echo -e '#!/bin/bash \n echo "'$version'" \n echo "$USER@$HOSTNAME" \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo "$USER@$HOSTNAME" \n echo "bye!"' | sudo tee /bin/update > /dev/null
         sudo chmod 644 /bin/update
         sudo chmod +x /bin/update
         echo "Cat contents"
