@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.49"
+version="v1.50"
 echo $USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
@@ -17,8 +17,9 @@ if [ -f "/bin/update" ]; then
          echo "The file /bin/update already exist."
     cat /bin/update
 
-    read -p "Do you update to new version? (y/n): " choice
-    if [ "$choice" == "y" ]; then
+    read -p "Do you update to new version? (Y/n): " -e choice
+choice="${choice:-y}"
+if [ "$choice" == "y" ]; then
     echo "Removing old"
     sudo rm /bin/update
     sudo cat /bin/update
