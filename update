@@ -22,11 +22,11 @@ if [ -f "/bin/update" ]; then
     echo "Removing old"
     sudo rm /bin/update
     sudo cat /bin/update
-    echo '$USER"@"$HOSTNAME'
+    echo $USER"@"$HOSTNAME
     echo "Running new bash"
     bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
     exit
-    echo '$USER "@" $HOSTNAME'
+    echo '$USER"@"$HOSTNAME'
     else
         echo "Cancelled."
  fi
