@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1"
+version="v1.49"
 echo $USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
