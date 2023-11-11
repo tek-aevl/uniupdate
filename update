@@ -1,5 +1,5 @@
 #!/bin/bash
-version="v1.50"
+version="v1.51"
 echo $USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
@@ -26,7 +26,7 @@ if [ "$choice" == "y" ]; then
     echo $USER"@"$HOSTNAME
     echo "Running new bash"
     bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-    exit
+    exit;
     echo '$USER"@"$HOSTNAME'
     else
         echo "Cancelled."
@@ -39,7 +39,7 @@ else
        echo -e '#!/bin/bash \n echo "#'$version'#" \n echo $USER"@"$HOSTNAME \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo $USER"@"$HOSTNAME \n echo "bye!"' | sudo tee /bin/update > /dev/null
         sudo chmod 644 /bin/update
         sudo chmod +x /bin/update
-        echo "Cat contents"
+        echo "Creating contents"
         cat /bin/update
         echo "Installed /bin/update successfully."
         sleep 6
