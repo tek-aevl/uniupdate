@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "#v.92# To use this in cli use
+echo "#v.93# To use this in cli use
 sudo nano /bin/usr/update
 # copy the next 3 lines into it with, and chmod it to 755  
 #!/bin/bash
@@ -42,9 +42,9 @@ echo "...done..."
 
 #echo "Retrieving ARP table"
 # Retrieve IP addresses from ARP table
-#arp_ip_list=$(arp -av | awk '{print $2}' | sed 's/[()]//g')
-#echo "$arp_ip_list ...done..."
-#sleep 2
+arp_ip_list=$(arp -av | awk '{print $2}' | sed 's/[()]//g')
+echo "$arp_ip_list ...done..."
+sleep 2
 
 echo "Retrieving active clients over the bridge"
 # Retrieve active clients in the bridge
@@ -61,8 +61,8 @@ sleep 2
 echo "Retrieving custom_ip_list"
 # custom list put the next line in a new file called custom_ip_list
 #custom_ip_list="0.0.0.0"$'\n'"0.0.0.0"
-#old#cat ~/custom_ip_list
 custom_ip_list=$(grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' ~/custom_ip_list)
+cat ~/custom_ip_list
 echo "$custom_ip_list  ...done..."
 sleep 2
 
