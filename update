@@ -1,10 +1,10 @@
 #!/bin/bash
-version="v1.52"
+version="v1.53"
 echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-echo 'bye ;-P'
+echo 'Bye! $USER ;-P'
 ";
 sleep 4
 if [ -f "/bin/update" ]; then
@@ -24,10 +24,11 @@ if [ "$choice" == "y" ]; then
     sudo rm /bin/update
     sudo cat /bin/update
     echo $USER"@"$HOSTNAME
+    sleep 3
     echo "Running new bash"
     bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
     exit;
-    echo '$USER"@"$HOSTNAME'
+    echo 'Bye! $USER"@"$HOSTNAME'
     else
         echo "Cancelled."
  fi
