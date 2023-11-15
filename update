@@ -1,6 +1,6 @@
 #!/bin/bash
-version="v1.51"
-echo $USER"@"$HOSTNAME
+version="v1.52"
+echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
@@ -36,7 +36,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " choice
     if [ "$choice" == "y" ]; then
-       echo -e '#!/bin/bash \n echo "#'$version'#" \n echo $USER"@"$HOSTNAME \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo $USER"@"$HOSTNAME \n echo "bye!"' | sudo tee /bin/update > /dev/null
+       echo -e '#!/bin/bash \n echo "#'$version'#" \n echo "Hello! "$USER"@"$HOSTNAME \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo $USER"@"$HOSTNAME \n echo "bye!"' | sudo tee /bin/update > /dev/null
         sudo chmod 644 /bin/update
         sudo chmod +x /bin/update
         echo "Creating contents"
@@ -47,7 +47,6 @@ else
         echo "Installation cancelled."
  fi
 fi
-###export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass  
 
 # Set the colors
 RED='\033[0;31m'       # Red color
@@ -106,10 +105,10 @@ sudo sleep 2
 fi
 
 # Programs needed in order to use this script.
-programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide")
 
 # Define the corresponding package names for each program
-package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu")
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide")
 
 # Define the corresponding package names for each program
 package_deletes=("")
