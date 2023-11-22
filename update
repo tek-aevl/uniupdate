@@ -5,7 +5,7 @@ echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run \n bash update
 bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-echo 'Bye! ;-P'
+echo 'Bye!'
 ";
 sleep 4
 if [ -f "/bin/update" ]; then
