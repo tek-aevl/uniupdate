@@ -1,5 +1,6 @@
 #!/bin/bash
-reset && clear
+reset
+clear
 version="v1.57"
 echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version # Assistance at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
