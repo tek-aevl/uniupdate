@@ -1,4 +1,3 @@
-reset
 #!/bin/bash
 clear
 version="v1.57"
