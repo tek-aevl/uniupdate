@@ -1,6 +1,5 @@
 #!/bin/bash
 version="v1.56"
-echo -e "v# $version # "
 echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version# Assistance at https://git.aevl.net/tek/umupdate
 #To use run # bash update
