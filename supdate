@@ -8,7 +8,7 @@ echo 'bye'
 ###above###
 "
 echo "#To use run"
-echo "bash supdate"
+echo "bash update"
 sleep 2
 echo "setting functions"
 #Function to check and copy SSH key to a remote host if needed
