@@ -1,5 +1,5 @@
-#!/bin/bash
 reset
+#!/bin/bash
 clear
 version="v1.57"
 echo "Hello! "$USER"@"$HOSTNAME
