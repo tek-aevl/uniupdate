@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "#v.94# To use this in cli use
 sudo nano /bin/usr/update
-# copy the next 3 lines into it with, and chmod it to 755  
+# copy the next 3 lines into it with, and chmod it to 755
 #!/bin/bash
 bash <(curl -c https://git.aevl.net/Tek/umupdate/raw/branch/main/supdate)
 echo 'bye'
@@ -97,6 +97,5 @@ for ip in $ip_list; do
   fi
      ssh -tY $ip "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
 
-ssh -tY $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
-
 fi
+done
