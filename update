@@ -4,7 +4,6 @@ version="v1.57"
 echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version # Assistance at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
 echo 'Bye! XD'"
-
 if [ -f "/bin/update" ]; then
    installed_version=$(grep -oP '(?<=#)\S+(?=#)' /bin/update)
    echo "Installed Version is "$installed_version
@@ -97,7 +96,7 @@ if [ $? -eq 0 ]; then
  echo -e "${GREEN}You can Sudo. Right? ${NC}"
 last 5
 sudo sleep 1
-elif sudo -v 2>&1;then 
+if sudo -v 2>&1;then 
    echo -e "${YELLOW}Sudo password is required.${NC}"
 sudo who -a
 sudo sleep 2
