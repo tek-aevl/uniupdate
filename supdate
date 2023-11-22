@@ -97,5 +97,6 @@ for ip in $ip_list; do
   fi
      ssh -tY $ip "bash <(curl -s https://git.aevl.net/Tek/umupdate/raw/branch/main/logreset)"
 
+ssh -tY $ip "bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
+
 fi
-done
