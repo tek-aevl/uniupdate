@@ -5,8 +5,6 @@ echo "Hello! "$USER"@"$HOSTNAME
 echo "#$version # Assistance at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
 echo 'Bye! XD'"
 
-sleep 4
-
 if [ -f "/bin/update" ]; then
    installed_version=$(grep -oP '(?<=#)\S+(?=#)' /bin/update)
    echo "Installed Version is "$installed_version
