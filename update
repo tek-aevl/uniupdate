@@ -96,7 +96,7 @@ if [ $? -eq 0 ]; then
  echo -e "${GREEN}You can Sudo. Right? ${NC}"
 last 5
 sudo sleep 1
-if sudo -v 2>&1;then 
+#if sudo -v 2>&1;then 
    echo -e "${YELLOW}Sudo password is required.${NC}"
 sudo who -a
 sudo sleep 2
