@@ -43,6 +43,7 @@ else
     else
         echo "Installation cancelled."
  fi
+fi 
 fi
 
 # Set the colors
