@@ -1,45 +1,43 @@
 #!/bin/bash
 version="v1.57"
-echo "Hello! "$USER"@"$HOSTNAME
+echo "Hello!"
 echo "#$version # Assistance at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-echo 'Bye! XD'"
 if [ -f "/bin/update" ]; then
    installed_version=$(grep -oP '(?<=#)\S+(?=#)' /bin/update)
    echo "Installed Version is "$installed_version
-  if [ "$installed_version" == "$version" ]; then
-        echo "Version matches!"
+         if [ "$installed_version" == "$version" ]; then
+               echo "Version matches!"
+         else
+               echo "Version mismatch! Installed version: $installed_version"
+               echo "The file /bin/update already exist."
+               cat /bin/update
+               read -p "Do you update to new version? (Y/n): " -e choice
+               choice="${choice:-y}"
+                    if [ "$choice" == "y" ]; then
+                        echo "Removing old"
+                          sudo rm /bin/update
+                          sudo cat /bin/update
+                          echo $USER"@"$HOSTNAME
+                          sleep 3
+                          echo "Running new bash"
+                          ##bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
+                          exit;
+                          echo 'Bye! $USER"@"$HOSTNAME'
+            elif
+                echo "Cancelled."
+           fi
+        fi
     else
-        echo "Version mismatch! Installed version: $installed_version"
-         echo "The file /bin/update already exist."
-    cat /bin/update
-
-    read -p "Do you update to new version? (Y/n): " -e choice
-choice="${choice:-y}"
-if [ "$choice" == "y" ]; then
-    echo "Removing old"
-    sudo rm /bin/update
-    sudo cat /bin/update
-    echo $USER"@"$HOSTNAME
-    sleep 3
-    echo "Running new bash"
-    bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)
-    exit;
-    echo 'Bye! $USER"@"$HOSTNAME'
-    else
-        echo "Cancelled."
- fi
-fi
-else
-    echo "The file /bin/update does not exist."
-    read -p "Do you want to install it? (y/n): " choice
-    if [ "$choice" == "y" ]; then
-       echo -e '#!/bin/bash \n echo "#'$version'#" \n echo "Hello! "$USER"@"$HOSTNAME \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo $USER" bye! XD "' | sudo tee /bin/update > /dev/null
-        sudo chmod 644 /bin/update
-        sudo chmod +x /bin/update
-        echo "Creating contents"
-        cat /bin/update
-        echo "Installed /bin/update successfully."
-        sleep 6
+            echo "The file /bin/update does not exist."
+            read -p "Do you want to install it? (y/n): " choice
+                    if [ "$choice" == "y" ]; then
+                            echo -e '#!/bin/bash \n echo "#'$version'#" \n echo "Hello! "$USER"@"$HOSTNAME \n echo "Assistance at https://git.aevl.net/tek/umupdate" #To use run \n echo "bash update" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo $USER" bye! XD "' | sudo tee /bin/update > /dev/null
+                        sudo chmod 644 /bin/update
+                        sudo chmod +x /bin/update
+                        echo "Verifing contents"
+                            cat /bin/update
+                        echo "Installed /bin/update successfully."
+                        sleep 6
     else
         echo "Installation cancelled."
  fi
