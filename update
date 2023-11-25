@@ -101,10 +101,10 @@ sudo sleep 2
 fi
 
 # Programs needed in order to use this script.
-programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide" " ")
+programs=("dialog" "bc" "inxi" "neofetch" "speedtest" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide")
 
 # Define the corresponding package names for each program
-package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide" " ")
+package_names=("dialog" "bc" "inxi" "neofetch" "speedtest-cli" "htop" "cron" "nano" "qemu-guest-agent" "fail2ban" "ncdu" "aide")
 
 # Define the corresponding package names for each program
 package_deletes=("")
