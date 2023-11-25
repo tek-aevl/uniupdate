@@ -11,7 +11,8 @@ if [ -f "/bin/update" ]; then
                echo "Version mismatch! Installed version: $installed_version"
                echo "The file /bin/update already exist."
                cat /bin/update
-               read -p "Do you update to new version? (Y/n): " -e choice
+
+               read -p "Do you update to new version? (Y/n): " -e choice 
                choice="${choice:-y}"
                     if [ "$choice" == "y" ]; then
                         echo "Removing old"
