@@ -1,6 +1,6 @@
 #!/bin/bash
 version="v1.59"
-echo "Hello ! #$version# Info at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
+echo "Hello ! #v\"$version\"#  Info at https://git.aevl.net/tek/umupdate #To use run # bash update or bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update)"
 if [ -f "/bin/update" ]; then
    installed_version=$(grep -oP '(?<=#)\S+(?=#)' /bin/update)
    echo "Installed Version is "$installed_version
@@ -28,7 +28,7 @@ else
     echo "The file /bin/update does not exist."
     read -p "Do you want to install it? (y/n): " -e choice
     if [ "$choice" == "y" ]; then
-        echo -e "#!/bin/bash \n echo \"$version\" \n echo \"Hello! $USER@$HOSTNAME\" \n echo \"Assistance at https://git.aevl.net/tek/umupdate\" #To use run \n echo \"bash update\" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo \"$USER bye! XD \"" | sudo tee /bin/update > /dev/null
+        echo -e "#!/bin/bash \n echo "#'"$version"'#" \n echo \"Hello! $USER@$HOSTNAME\" \n echo \"Assistance at https://git.aevl.net/tek/umupdate\" #To use run \n echo \"bash update\" \n bash <(curl -s https://git.aevl.net/tek/umupdate/raw/branch/main/update) \n echo \"$USER bye! XD \"" | sudo tee /bin/update > /dev/null
         sudo chmod 644 /bin/update
         sudo chmod +x /bin/update
         echo "Verifying contents"
