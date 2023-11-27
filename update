@@ -40,7 +40,7 @@ else
     fi
 fi
 
-exit
+exit;
 # Set the colors
 RED='\033[0;31m'       # Red color
 LIGHT_RED='\033[0;91m'    # Light red color
